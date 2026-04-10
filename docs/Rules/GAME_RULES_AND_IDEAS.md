@@ -29,17 +29,24 @@ As difficulty increases:
 - average fishing quality/value increases,
 - chance of negative events increases.
 
-## 3) Capacity per sea
+## 3) Occupation rule
 
-Each sea has a ship limit. If a sea is full and someone tries to enter, a battle occurs.
+Only one ship may occupy each outer sea at a time.
 
-Suggested capacity for balancing (can be adjusted in playtests):
+The lagoon is a shared safe hub:
 
-- Central Sea: 4 slots
-- Outer A: 2 slots
-- Outer B: 2 slots
-- Outer C: 2 slots
-- Outer D: 2 slots
+- it can contain multiple ships;
+- it is the only place where fish can be sold;
+- defeated players always return there.
+
+Occupancy rule:
+
+- If an outer sea is free, the player may enter it.
+- If an outer sea is occupied, the incoming player must challenge the occupant in a battle.
+- The loser of the battle always returns to the lagoon.
+- The winner stays in the target sea.
+
+The lagoon remains the central safe zone, the default return point after defeat, and the only shared market zone.
 
 ## 4) Win condition
 
@@ -58,8 +65,10 @@ Each round has the following phases:
 - Player chooses 1 main action (or more if cards allow it).
 
 2. Movement Phase
-- Player may attempt to change seas.
-- If the target sea is full, an occupation battle starts.
+- Player may move once to any sea.
+- If the target sea is free, the player enters it.
+- If the target sea is occupied, an occupation battle starts.
+- The loser returns to the lagoon.
 
 3. Action Phase
 - Player uses active cards/effects.
@@ -73,7 +82,7 @@ Each round has the following phases:
 - Quantity and quality depend on sea and active buffs/debuffs.
 
 6. Market Phase
-- Player may sell part or all of cargo.
+- Player may sell part or all of cargo only while in the lagoon.
 - Fish sets grant sale bonuses.
 
 ## 6) Available actions before ending the round
@@ -83,7 +92,6 @@ Base action list per turn (1 main action by default):
 - Move to another sea.
 - Repair hull (recover health).
 - Fortify ship (temporary defense).
-- Plunder target (steal 1 random fish with failure chance).
 - Play attack/defense/utility card.
 - Trade (sell with a small bonus in favorable market).
 
@@ -91,7 +99,7 @@ Base action list per turn (1 main action by default):
 
 Combat occurs when:
 
-- a player tries to enter a full sea,
+- a player tries to enter an occupied sea,
 - a card or skill creates direct conflict.
 
 Suggested format for fast online combat:
@@ -100,11 +108,12 @@ Suggested format for fast online combat:
 - Loser takes damage equal to the difference (minimum 1).
 - Best of 3 exchanges, or until one side yields.
 
-Result in slot disputes:
+Result in occupation disputes:
 
-- Winner takes the slot in the contested sea.
-- Loser retreats to a valid adjacent sea.
-- If there is no valid sea, loser is moved to the central sea.
+- Winner takes the contested sea.
+- Loser always returns to the lagoon.
+- If the attacker loses, the defender keeps the sea.
+- If the defender loses, the attacker occupies the sea.
 
 ## 8) Health, damage, and elimination
 
@@ -121,8 +130,15 @@ Damage sources:
 When HP reaches 0:
 
 - Ship sinks.
-- Player loses part of cargo (suggestion: 50% random fish).
-- Player returns next turn to Central Sea with partial HP (suggestion: 6).
+- Player loses all fish cargo.
+- Player loses a percentage of gold (suggestion: 25% to 40%, rounded down).
+- Player returns next turn to the lagoon with partial HP (suggestion: 6).
+
+Repair note:
+
+- The lagoon includes a repair dock.
+- Players can pay gold to restore HP there.
+- Repair should only be possible in the lagoon.
 
 Design note:
 
@@ -135,6 +151,13 @@ Fish types (initial example):
 
 - Common: Sardine, Anchovy
 - Uncommon: Tuna, Mackerel
+
+### Direct theft and pressure
+
+- Random Theft: steal 1 random fish from a player of your choice.
+- Targeted Theft: steal 1 specific fish from a player of your choice, if they have it.
+- Tide Purge: choose one fish type; all players, including you, discard all fish of that type.
+- Shared Tide: choose one player; for 1 round, that player mirrors the fish and environmental damage you receive during your turn, without changing sea occupancy.
 - Rare: Swordfish, Blue Salmon
 - Epic: Golden Sunfish
 
@@ -148,6 +171,7 @@ Simple sea table (example):
 
 Selling:
 
+- Fish can only be sold in the lagoon.
 - Sold fish generate immediate coins.
 - Holding fish for set completion can give higher value later.
 
@@ -166,21 +190,32 @@ Set rules:
 
 ## 11) Action cards
 
-Initial deck with quick-resolution cards:
+Initial deck with Florianopolis-themed cards (events on hold):
 
-- Extra Attack: +1 attack this round.
-- Heavy Cannon: +2 in one combat exchange.
-- Smoke Screen: ignore 1 incoming attack.
-- Reinforced Hull: ignore environmental damage this round.
-- Opportunistic Theft: steal 1 random fish from a target in the same sea.
-- Special Net: +1 fish during mandatory fishing.
-- Evasive Maneuver: cancel one plunder attempt against you.
+- Witches of the Lagoon: gain +1 in the next battle you fight this round.
+- South Wind: if you defend a sea, the attacker gets -1 in the first combat exchange.
+- Conceicao Mist: cancel one attack targeting you this turn.
+- Channel Passage: move to any sea this turn and immediately challenge the occupant if the sea is already taken.
+- Naufragados Wreck: gain +2 in one combat exchange in Outer D only.
+- Tainha Season: +1 fish in mandatory fishing this turn.
+- Fisherman's Blessing: heal 2 HP.
+- Net of the Rendeiras: convert 1 common fish into 1 uncommon fish.
+- Wharf Bargain: +20% sale value in this Market Phase.
+- Hidden Current: if you win a battle, the loser returns to the lagoon and loses 1 additional fish.
+- Lantern of the Watchman: ignore environmental damage this turn.
+- Tide of the Island: the next player who challenges your sea takes +1 damage from the battle, and you gain 1 coin.
 
 Card rules:
 
 - Suggested max hand size: 3 cards.
-- Suggested draw rate: 1 card every 2 rounds, or via event.
+- Suggested draw rate: 1 card every 2 rounds.
 - Per-turn limit: 1 card (unless a special effect says otherwise).
+
+Design constraints for cards:
+
+- Keep card text short and deterministic for multiplayer sync.
+- Prioritize map positioning, fishing, and economy over pure damage.
+- At least 60% of cards should be useful in both quick mode and normal mode.
 
 ## 12) Sea hazards
 
@@ -371,7 +406,7 @@ Minimum playable scope (MVP):
 
 - Lobby for 6-8 players.
 - 5 seas with limits.
-- Movement + slot dispute via combat.
+- Movement + occupation dispute via combat.
 - Environmental damage.
 - Mandatory fishing at end of each turn.
 - Fish selling and coin-based scoring.
