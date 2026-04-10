@@ -9,10 +9,7 @@
 
 ## General logic
 
-- safer seas tend to generate common fish;
-- dangerous seas increase the chance of higher rarity;
-- selling converts fish into coins immediately;
-- holding fish enables set bonuses.
+- Fish can only be sold in the lagoon, which acts as the shared market hub.
 
 ## Suggested sets
 
