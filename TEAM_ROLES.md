@@ -37,7 +37,7 @@ The architecture is designed around:
 
 ---
 
-# 🌐 2. Networking, Database & Game Session Lead (Person B)
+# 🌐 2. Networking, Database & Game Session Lead (Tania)
 
 ## Ownership
 - WebSocket server (real-time communication)
@@ -49,7 +49,7 @@ The architecture is designed around:
 ---
 
 ## Database Responsibility (CRITICAL)
-Person B is the **only owner of database schema and persistence logic**.
+Tania is the **only owner of database schema and persistence logic**.
 
 The database stores:
 - Players
@@ -77,7 +77,7 @@ Other team members may request data needs but do not define schema.
 
 ---
 
-# 🎮 3. Movement, Map & Player State Lead (Person C)
+# 🎮 3. Movement, Map & Player State Lead (Gabriel)
 
 ## Ownership
 - Movement system (validated through Core Engine)
@@ -104,7 +104,7 @@ Other team members may request data needs but do not define schema.
 
 ---
 
-# 💰 4. Fishing, Economy & UI Lead (Person D)
+# 💰 4. Fishing, Economy & UI Lead (Keillin)
 
 ## Ownership
 - Fishing system (core logic via Core Engine)
@@ -133,7 +133,7 @@ Other team members may request data needs but do not define schema.
 
 ---
 
-# 🤖 5. Bots, Hazards & Integration Lead (Person E)
+# 🤖 5. Bots, Hazards & Integration Lead (Ana Paula)
 
 ## Ownership
 - Bot AI system (simulated players)
@@ -148,7 +148,7 @@ Other team members may request data needs but do not define schema.
 ---
 
 ## Integration & QA Responsibility (CRITICAL)
-Person E is responsible for:
+Ana Paula is responsible for:
 - Running full game simulations daily
 - Testing full matches (6–8 players with bots)
 - Validating system integration across all modules
@@ -178,7 +178,7 @@ Clients only send **intent**, never results.
 ---
 
 ## 🗄️ Database ownership is centralized
-Only Networking Lead (Person B) defines and manages:
+Only Networking Lead (Tania) defines and manages:
 - Schema
 - Persistence
 - Storage logic
@@ -205,3 +205,53 @@ This structure is designed to:
 - Minimize integration risk before evaluation
 
 ---
+
+**Honest recommendation for a 4-week sprint:**
+
+## **Best Tech Stack**
+
+### **Backend + Core Engine: Node.js + TypeScript**
+- **Fastest development** for your timeline
+- WebSocket support is native and performant (use `socket.io` or `ws`)
+- Great npm ecosystem (libraries for everything)
+- Same language as frontend = easier team coordination
+- Good enough for game logic (not performance-critical on server side)
+
+### **Frontend: React + TypeScript**
+- Rapid UI development
+- Easy animations and real-time updates
+- Good component reusability for inventory/market UIs
+- Large community if you hit issues
+
+### **Database: PostgreSQL + Prisma ORM**
+- Simple to setup and query
+- Type-safe with TypeScript
+- Good for session/game state persistence
+
+### **Bots/AI: Python (separate service) OR Node.js**
+- If bots are simple (random + basic heuristics): integrate into Node.js
+- If they need ML: Python with `scikit-learn` or similar
+
+---
+
+## **Why this over C++:**
+
+1. **Speed matters** — 4 weeks is tight. Node.js has less boilerplate than C++
+2. **Easier debugging** — Web dev tools > C++ debugging for UI issues
+3. **Team fluidity** — One language stack (JavaScript/TypeScript) = easier collaboration
+4. **Deployability** — Node.js deploys faster, easier to host
+5. **Iteration** — Game balance tweaks ship faster
+
+---
+
+## **Alternative (if you want game-engine feel):**
+
+**Godot Engine** (GDScript backend + frontend in same tool)
+- Single engine for server + client logic
+- Much faster UI development than C++
+- Good for prototyping
+- Smaller learning curve if anyone knows Unreal/Unity
+
+---
+
+**Bottom line**: **Node.js + React + PostgreSQL** gives you the best velocity. Save C++ for when you have 3+ months and performance is actually a bottleneck.
