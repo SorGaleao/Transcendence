@@ -1,25 +1,25 @@
 # MVP
 
-## Escopo minimo jogavel
+## Minimum playable scope
 
-- lobby funcional;
-- 5 mares no tabuleiro;
-- movimento entre mares;
-- perigo ambiental;
-- pesca obrigatoria;
-- venda de peixes;
-- conjunto basico de cartas;
-- pontuacao final por moedas.
+- functional lobby;
+- 5 seas on the board;
+- movement between seas;
+- environmental hazard system;
+- mandatory fishing;
+- fish selling;
+- basic card set;
+- final score by coins.
 
-## Prioridade de entrega
+## Delivery priority
 
-1. loop principal de turno;
-2. pesca e economia;
-3. perigo do mar;
-4. cartas basicas;
-5. modo rapido fechado;
-6. refinamentos do modo normal.
+1. main turn loop;
+2. fishing and economy;
+3. sea hazard;
+4. basic cards;
+5. completed quick mode;
+6. normal mode refinements.
 
-## Ideia complementar
+## Additional idea
 
-Se o prazo for apertado, o ideal e terminar primeiro um loop curto e consistente. Um jogo simples e jogavel vale mais do que um sistema grande, mas incompleto.
+If timeline gets tight, finish a short and consistent gameplay loop first. A simple playable game is more valuable than a large but incomplete system.

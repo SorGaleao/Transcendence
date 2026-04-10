@@ -1,224 +1,212 @@
-# Transcendence - Jogo de Tabuleiro Online (Concept)
+# Transcendence - Online Board Game (Concept)
 
-## 1) Visao geral
+## 1) Overview
 
-Projeto de jogo online multiplayer com tema de navios pesqueiros e pirataria leve.
+Online multiplayer game concept with fishing ships and light pirate-style conflict.
 
-- Inspiracao: mistura de Quartz + King of Tokyo.
-- Jogadores: 6 a 8 jogadores por partida.
-- Objetivo: terminar a partida com mais dinheiro acumulado pela venda de peixes.
-- Ponto central de decisao: risco vs recompensa entre mares mais seguros e mares mais perigosos.
+- Inspiration: a mix of Quartz + King of Tokyo.
+- Players: 6 to 8 players per match.
+- Objective: finish the game with the most money earned from selling fish.
+- Core decision axis: risk vs reward between safer seas and more dangerous seas.
 
+## 2) Map and seas
 
-## 2) Mapa e mares
+The board has 5 seas:
 
-O tabuleiro possui 5 mares:
+- 1 central sea (calmer).
+- 4 outer seas around the center.
 
-- 1 mar central (mais calmo).
-- 4 mares externos em volta do centro.
+Difficulty rule (clockwise from the top-right corner):
 
-Regra de dificuldade (seguindo sentido horario a partir do canto superior direito):
+1. Outer Sea A (easiest)
+2. Outer Sea B
+3. Outer Sea C
+4. Outer Sea D (hardest)
 
-1. Mar Externo A (mais facil)
-2. Mar Externo B
-3. Mar Externo C
-4. Mar Externo D (mais dificil)
+As difficulty increases:
 
-Quanto maior a dificuldade:
+- environmental danger increases,
+- average fishing quality/value increases,
+- chance of negative events increases.
 
-- maior o perigo ambiental,
-- maior a qualidade/valor medio da pesca,
-- maior a chance de eventos negativos.
+## 3) Capacity per sea
 
+Each sea has a ship limit. If a sea is full and someone tries to enter, a battle occurs.
 
-## 3) Capacidade por mar
+Suggested capacity for balancing (can be adjusted in playtests):
 
-Cada mar tem limite de navios. Quando um mar esta lotado e alguem tenta entrar, ocorre batalha.
+- Central Sea: 4 slots
+- Outer A: 2 slots
+- Outer B: 2 slots
+- Outer C: 2 slots
+- Outer D: 2 slots
 
-Capacidade sugerida para balanceamento (pode ajustar em testes):
+## 4) Win condition
 
-- Mar Central: 4 vagas
-- Externo A: 2 vagas
-- Externo B: 2 vagas
-- Externo C: 2 vagas
-- Externo D: 2 vagas
+- Match lasts a fixed number of rounds (suggestion: 10 to 14).
+- At the end, the player with the most coins wins.
+- Tiebreakers:
+1. Highest value of completed fish sets.
+2. Highest number of sold rare fish.
+3. Highest remaining HP.
 
+## 5) Turn structure
 
-## 4) Condicao de vitoria
+Each round has the following phases:
 
-- A partida dura numero fixo de rodadas (sugestao: 10 a 14).
-- Ao final, vence quem tiver mais moedas.
-- Desempate:
-1. Maior valor de conjuntos de peixes completos.
-2. Maior quantidade de peixes raros vendidos.
-3. Maior vida restante.
+1. Planning Phase
+- Player chooses 1 main action (or more if cards allow it).
 
+2. Movement Phase
+- Player may attempt to change seas.
+- If the target sea is full, an occupation battle starts.
 
-## 5) Estrutura de turno
+3. Action Phase
+- Player uses active cards/effects.
+- Offensive, defensive, or economic actions.
 
-Cada rodada possui as fases abaixo:
+4. Environmental Hazard Phase
+- Each player in a sea resolves that sea's hazard.
 
-1. Fase de Planejamento
-- Jogador escolhe 1 acao principal (ou mais se cartas permitirem).
+5. Fishing Phase (mandatory)
+- Every player must fish at the end of the turn.
+- Quantity and quality depend on sea and active buffs/debuffs.
 
-2. Fase de Movimento
-- Jogador pode tentar mudar de mar.
-- Se o mar de destino estiver cheio, inicia batalha de ocupacao.
+6. Market Phase
+- Player may sell part or all of cargo.
+- Fish sets grant sale bonuses.
 
-3. Fase de Acoes
-- Jogador usa cartas/efeitos ativos.
-- Acoes ofensivas, defensivas ou economicas.
+## 6) Available actions before ending the round
 
-4. Fase de Perigo Ambiental
-- Cada jogador no mar sofre teste de perigo conforme o nivel do mar.
+Base action list per turn (1 main action by default):
 
-5. Fase de Pesca (obrigatoria)
-- Todo jogador deve pescar no fim do turno.
-- Quantidade e qualidade dependem do mar e de buffs/debuffs.
+- Move to another sea.
+- Repair hull (recover health).
+- Fortify ship (temporary defense).
+- Plunder target (steal 1 random fish with failure chance).
+- Play attack/defense/utility card.
+- Trade (sell with a small bonus in favorable market).
 
-6. Fase de Mercado
-- Jogador pode vender parte ou total da carga.
-- Sets de peixes garantem bonus de venda.
+## 7) Combat system
 
+Combat occurs when:
 
-## 6) Acoes disponiveis antes de encerrar rodada
+- a player tries to enter a full sea,
+- a card or skill creates direct conflict.
 
-Lista base de acoes por turno (1 acao principal por padrao):
+Suggested format for fast online combat:
 
-- Mover para outro mar.
-- Reparar casco (recuperar vida).
-- Fortificar navio (ganhar defesa temporaria).
-- Saquear alvo (roubar 1 peixe aleatorio com chance de falha).
-- Jogar carta de ataque/defesa/utilidade.
-- Negociar (vender com bonus pequeno em mercado favoravel).
+- Each side rolls 1d6 + ship attack + card modifiers.
+- Loser takes damage equal to the difference (minimum 1).
+- Best of 3 exchanges, or until one side yields.
 
+Result in slot disputes:
 
-## 7) Sistema de combate
+- Winner takes the slot in the contested sea.
+- Loser retreats to a valid adjacent sea.
+- If there is no valid sea, loser is moved to the central sea.
 
-Combate acontece quando:
+## 8) Health, damage, and elimination
 
-- jogador tenta entrar em mar lotado,
-- carta ou habilidade cria conflito direto.
+Suggested base health per ship:
 
-Formato sugerido para combate rapido online:
+- Starting HP: 10
 
-- Cada lado rola 1d6 + ataque do navio + modificadores de carta.
-- Quem perder sofre dano igual a diferenca minima de 1.
-- Melhor de 3 trocas, ou ate um lado desistir.
+Damage sources:
 
-Resultado em disputa por vaga:
+- Ship combat.
+- Sea hazards.
+- Certain cards/events.
 
-- Vencedor ocupa a vaga no mar disputado.
-- Perdedor recua para mar adjacente valido.
-- Se nao houver mar valido, vai para mar central.
+When HP reaches 0:
 
+- Ship sinks.
+- Player loses part of cargo (suggestion: 50% random fish).
+- Player returns next turn to Central Sea with partial HP (suggestion: 6).
 
-## 8) Vida, dano e eliminacao
+Design note:
 
-Vida base sugerida por navio:
+- Avoiding permanent elimination improves online experience (nobody sits out too long).
+- Optional hardcore mode can allow permanent death.
 
-- HP inicial: 10
+## 9) Fishing and economy
 
-Fontes de dano:
+Fish types (initial example):
 
-- Combate entre navios.
-- Perigos do mar.
-- Algumas cartas/eventos.
+- Common: Sardine, Anchovy
+- Uncommon: Tuna, Mackerel
+- Rare: Swordfish, Blue Salmon
+- Epic: Golden Sunfish
 
-Quando HP chega a 0:
+Simple sea table (example):
 
-- Navio afunda.
-- Jogador perde parte da carga (sugestao: 50% dos peixes aleatorios).
-- Jogador volta no proximo turno no Mar Central com HP parcial (sugestao: 6).
+- Central Sea: high common chance, low uncommon chance
+- Outer A: common + uncommon
+- Outer B: stable uncommon, low rare
+- Outer C: medium rare, high risk
+- Outer D: high rare, epic chance, very high risk
 
-Observacao de design:
+Selling:
 
-- Evitar eliminacao permanente ajuda experiencia online (ninguem fica sem jogar por muito tempo).
-- Modo hardcore opcional pode permitir morte definitiva.
+- Sold fish generate immediate coins.
+- Holding fish for set completion can give higher value later.
 
+## 10) Fish sets (set collection)
 
-## 9) Pesca e economia
+Suggested sets:
 
-Tipos de peixe (exemplo inicial):
+- Local School: 3 different common fish -> fixed sale bonus.
+- Export Batch: 2 uncommon + 1 rare -> high bonus.
+- Ocean Trophy: 2 rare + 1 epic -> very high bonus.
 
-- Comum: Sardinha, Anchova
-- Incomum: Atum, Cavala
-- Raro: Espadarte, Salmao Azul
-- Epico: Peixe-Lua Dourado
+Set rules:
 
-Tabela simples por mar (exemplo):
+- Set can be sold at any time in Market Phase.
+- Selling a set consumes all fish used by that set.
 
-- Mar Central: alta chance de comum, baixa chance de incomum
-- Externo A: comum + incomum
-- Externo B: incomum consistente, raro baixo
-- Externo C: raro medio, risco alto
-- Externo D: raro alto, chance epico, risco muito alto
+## 11) Action cards
 
-Venda:
+Initial deck with quick-resolution cards:
 
-- Peixes vendidos geram moedas imediatas.
-- Segurar peixe para completar set pode render mais no futuro.
+- Extra Attack: +1 attack this round.
+- Heavy Cannon: +2 in one combat exchange.
+- Smoke Screen: ignore 1 incoming attack.
+- Reinforced Hull: ignore environmental damage this round.
+- Opportunistic Theft: steal 1 random fish from a target in the same sea.
+- Special Net: +1 fish during mandatory fishing.
+- Evasive Maneuver: cancel one plunder attempt against you.
 
+Card rules:
 
-## 10) Conjuntos de peixes (set collection)
+- Suggested max hand size: 3 cards.
+- Suggested draw rate: 1 card every 2 rounds, or via event.
+- Per-turn limit: 1 card (unless a special effect says otherwise).
 
-Conjuntos sugeridos:
+## 12) Sea hazards
 
-- Cardume Local: 3 peixes comuns diferentes -> bonus de venda fixo.
-- Exportacao: 2 incomuns + 1 raro -> bonus alto.
-- Trofeu do Oceano: 2 raros + 1 epico -> bonus muito alto.
+Each outer sea has a risk table. Example:
 
-Regras de set:
+- Outer A: 20% chance to take 1 damage.
+- Outer B: 30% chance to take 1 damage.
+- Outer C: 40% chance to take 1-2 damage.
+- Outer D: 50% chance to take 2 damage.
 
-- Set pode ser vendido a qualquer momento na Fase de Mercado.
-- Cada set consumido remove os peixes usados do inventario.
+Hazards may include:
 
+- Storm.
+- Hidden rocks.
+- Strong current.
+- Sea monster.
 
-## 11) Cartas de acao
+## 13) Synchronization rules for the online version
 
-Deck inicial com cartas de uso rapido:
+Because it is online, use a server-authoritative model:
 
-- Ataque Extra: +1 ataque nesta rodada.
-- Canhao Pesado: +2 em uma unica troca de combate.
-- Cortina de Fumaca: ignora 1 ataque recebido.
-- Casco Reforcado: ignora dano ambiental nesta rodada.
-- Roubo Oportunista: rouba 1 peixe aleatorio de um alvo no mesmo mar.
-- Rede Especial: +1 peixe na pesca obrigatoria.
-- Manobra Evasiva: cancela tentativa de saque contra voce.
+- Server validates all gameplay actions.
+- Client only sends intent (desired action).
+- Final state is always decided by server.
 
-Regras de cartas:
-
-- Mao maxima sugerida: 3 cartas.
-- Compra sugerida: 1 carta a cada 2 rodadas, ou por evento.
-- Limite por turno: 1 carta (salvo efeitos especiais).
-
-
-## 12) Perigos do mar
-
-Cada mar externo tem tabela de risco. Exemplo:
-
-- Externo A: 20% de chance de sofrer 1 dano.
-- Externo B: 30% de chance de sofrer 1 dano.
-- Externo C: 40% de chance de sofrer 1-2 dano.
-- Externo D: 50% de chance de sofrer 2 dano.
-
-Perigos podem incluir:
-
-- Tempestade.
-- Rochas ocultas.
-- Correnteza.
-- Monstro marinho.
-
-
-## 13) Regras de sincronia para versao online
-
-Como sera online, usar modelo server-authoritative:
-
-- Servidor valida toda acao de jogo.
-- Cliente apenas envia intencao (acao desejada).
-- Estado final sempre decidido no servidor.
-
-Eventos em tempo real (WebSocket) sugeridos:
+Suggested real-time (WebSocket) events:
 
 - lobby:update
 - game:start
@@ -233,190 +221,183 @@ Eventos em tempo real (WebSocket) sugeridos:
 - player:sunk
 - game:end
 
-Requisitos de robustez:
+Robustness requirements:
 
-- Reconexao com recuperacao de estado.
-- Timeout de turno para evitar travamento.
-- Log de eventos para auditoria e replay simples.
+- Reconnection with state recovery.
+- Turn timeout to prevent match stalls.
+- Event log for auditing and simple replay.
 
-
-## 14) Fluxo de partida (alto nivel)
+## 14) Match flow (high-level)
 
 1. Lobby
-- Criacao da sala.
-- Entrada de 6 a 8 jogadores.
-- Escolha de configuracoes (rodadas, modo normal/hardcore, seed opcional).
+- Room creation.
+- 6 to 8 players join.
+- Configuration choice (round count, normal/hardcore mode, optional seed).
 
-2. Preparacao
-- Distribuicao de navios iniciais.
-- Posicionamento inicial no mar central.
-- Cartas iniciais (opcional).
+2. Setup
+- Initial ship distribution.
+- Initial placement in central sea.
+- Optional starting cards.
 
-3. Rodadas
-- Executa fases de turno para todos os jogadores.
-- Atualiza ranking parcial por moedas.
+3. Rounds
+- Execute turn phases for all players.
+- Update partial ranking by coins.
 
-4. Encerramento
-- Ultima venda de peixes.
-- Bonus de sets.
-- Desempates.
-- Tela final com ranking e estatisticas.
+4. Endgame
+- Final fish sale.
+- Set bonuses.
+- Tiebreakers.
+- Final screen with ranking and statistics.
 
+## 14.1) Quick mode for evaluation
 
-## 14.1) Modo rapido para avaliacao
+Mode designed for short matches and easier in-class testing.
 
-Modo pensado para partidas curtas e mais faceis de testar em sala.
+Mode goals:
 
-Objetivo do modo:
+- reduce total match duration;
+- preserve risk vs reward;
+- simplify cards and decisions;
+- remove direct player-vs-player combat.
 
-- reduzir a duracao total da partida;
-- manter o risco vs recompensa;
-- simplificar cartas e tomadas de decisao;
-- remover combate direto entre jogadores.
+Main rules:
 
-Regras principais:
+- 4 to 6 rounds;
+- no hard limit of ships per sea;
+- player contention happens indirectly through crowding pressure in the same sea;
+- action cards are simpler and have immediate effects.
 
-- partida com 4 a 6 rodadas;
-- sem limite rigido de navios por mar;
-- a disputa entre jogadores acontece de forma indireta, pela pressao de lotacao no mesmo mar;
-- cartas de acao sao mais simples e com efeitos imediatos.
+Sea crowding hazard:
 
-Perigo por lotacao do mar:
+- each sea has its base hazard;
+- each extra player in the same sea increases hazard;
+- simple suggestion: for each ship above the first in the same sea, everyone there receives +1 damage or +1 on hazard test;
+- this increase can have a cap to avoid extremes, for example +3 max;
+- this makes crowded seas riskier even without direct combat.
 
-- cada mar tem seu perigo base;
-- a cada jogador extra no mesmo mar, o perigo aumenta;
-- sugestao simples: para cada navio acima do primeiro no mesmo mar, todos ali recebem +1 de dano ou +1 no teste de perigo;
-- o aumento pode ter teto para nao ficar exagerado, por exemplo +3 no maximo;
-- isso faz mares cheios ficarem mais arriscados, mesmo sem batalha.
+Simplified turn structure:
 
-Estrutura resumida do turno:
+1. Movement
+- player chooses a destination sea;
+- player may move or stay;
+- crowded seas do not block entry.
 
-1. Movimento
-- o jogador escolhe um mar de destino;
-- pode mudar ou ficar;
-- mares cheios nao bloqueiam entrada.
+2. Sea hazard
+- apply base hazard from that sea;
+- apply crowding bonus based on number of ships present.
 
-2. Perigo do mar
-- aplica o perigo base do mar;
-- aplica o bonus de lotacao conforme o numero de navios presentes.
+3. Mandatory fishing
+- every player fishes at end of turn;
+- more dangerous seas offer better fishing with more risk.
 
-3. Pesca obrigatoria
-- todo jogador pesca no fim do turno;
-- mares mais perigosos oferecem pesca melhor, mas com mais risco.
+4. Market
+- player may sell fish or hold them for sets.
 
-4. Mercado
-- o jogador pode vender peixes ou guardar para sets.
+Simplified cards:
 
-Cartas simplificadas:
+- Quick Movement: move with no extra cost.
+- Light Repair: recover 1 or 2 health.
+- Naval Shield: ignore 1 damage this turn.
+- Improved Net: gain +1 fish while fishing.
+- Favorable Sale: sell with a small bonus.
 
-- Movimento Rapido: move sem custo extra.
-- Reparo Leve: recupera 1 ou 2 de vida.
-- Escudo Naval: ignora 1 dano neste turno.
-- Rede Melhorada: ganha +1 peixe na pesca.
-- Venda Favoravel: vende com pequeno bonus.
+What this mode gains:
 
-O que esse modo ganha:
+- shorter matches;
+- fewer rules to explain;
+- less downtime;
+- stronger focus on positioning and environmental risk.
 
-- partidas mais curtas;
-- menos regras para explicar;
-- menos tempo parado;
-- mais foco em posicionamento e risco ambiental.
+What this mode loses:
 
-O que esse modo perde:
+- less direct confrontation;
+- less player-driven unpredictability;
+- less tactical depth from combat.
 
-- menos confronto direto;
-- menos imprevisibilidade entre jogadores;
-- menos profundidade tática de combate.
+Provisional conclusion:
 
-Conclusao provisoria:
+- for project evaluation, this quick mode appears to be a good choice;
+- it preserves game identity and shortens match time without removing the key decision between safer and riskier seas.
 
-- para avaliacao do projeto, esse modo rapido parece uma boa escolha;
-- ele preserva a identidade do jogo e simplifica o tempo de partida sem apagar a decisao principal de ir para um mar seguro ou arriscado.
+## 14.2) How to support both modes without duplicating work
 
+Best strategy: share one game core and change only parameters and a few mode-specific rules.
 
-## 14.2) Como suportar os dois modos sem duplicar trabalho
+Shared base for both modes:
 
-A melhor estrategia e compartilhar o nucleo do jogo e mudar apenas parametros e algumas regras especificas por modo.
+- same match structure;
+- same seas and fishing system;
+- same coin economy and fish selling;
+- same card system, with different card lists by mode;
+- same server turn model.
 
-Base comum dos dois modos:
+Differences by configuration:
 
-- mesma estrutura de partida;
-- mesmos mares e sistema de pesca;
-- mesma economia de moedas e venda de peixes;
-- mesmo sistema de cartas, com lista diferente conforme o modo;
-- mesmo modelo de turno no servidor.
+- number of rounds;
+- presence or absence of ship limits per sea;
+- environmental hazard intensity;
+- presence or absence of direct combat;
+- card quantity and complexity.
 
-Diferenças por configuracao:
+Practical organization:
 
-- numero de rodadas;
-- presenca ou nao de limite de navios por mar;
-- intensidade do perigo ambiental;
-- existencia ou nao de combate direto entre jogadores;
-- quantidade e complexidade das cartas.
+- quick mode can be the default evaluation mode;
+- normal mode reuses the same phases with richer rules;
+- whenever possible, logic should come from a configuration such as mode = quick or mode = full;
+- this avoids building two separate games.
 
-Forma pratica de organizar:
+Benefits of this approach:
 
-- o modo rapido pode ser o padrao de avaliacao;
-- o modo normal reaproveita as mesmas fases, mas com regras mais completas;
-- sempre que possivel, a logica deve sair de uma configuracao do tipo `mode = quick` ou `mode = full`;
-- assim evita-se criar dois jogos separados.
+- less duplicated code;
+- lower bug risk;
+- simpler balancing;
+- easier demonstration without abandoning the complete-mode vision.
 
-Vantagem dessa abordagem:
+## 15) Useful metrics and statistics
 
-- menos codigo duplicado;
-- menos risco de bug;
-- balanceamento mais simples;
-- mais facil demonstrar o projeto sem abandonar a ideia do modo completo.
+For match history and player profile:
 
+- Total coins per match.
+- Fish caught by rarity.
+- Completed sets.
+- Damage dealt/taken.
+- Number of times sunk.
+- Win rate.
+- Most visited sea.
 
-## 15) Indicadores e estatisticas uteis
+## 16) MVP prototype focus
 
-Para historico de partida e perfil do jogador:
+Minimum playable scope (MVP):
 
-- Moedas totais por partida.
-- Peixes capturados por raridade.
-- Sets completos.
-- Dano causado/recebido.
-- Numero de afundamentos sofridos.
-- Taxa de vitoria.
-- Mar mais visitado.
+- Lobby for 6-8 players.
+- 5 seas with limits.
+- Movement + slot dispute via combat.
+- Environmental damage.
+- Mandatory fishing at end of each turn.
+- Fish selling and coin-based scoring.
+- 10 basic cards.
+- Endgame ranking screen.
 
+Iteration 2 items:
 
-## 16) Pontos para prototipo MVP
-
-Escopo minimo jogavel (MVP):
-
-- Lobby com 6-8 jogadores.
-- 5 mares com limites.
-- Movimento + disputa de vaga por combate.
-- Dano ambiental.
-- Pesca obrigatoria no fim de cada turno.
-- Venda de peixes e pontuacao por moedas.
-- 10 cartas basicas.
-- Fim de jogo com ranking.
-
-Itens para iteracao 2:
-
-- Balanco fino de economia.
-- Mais tipos de carta.
-- Match history detalhado.
+- Economy fine-tuning.
+- More card types.
+- Detailed match history.
 - Spectator mode.
 
+## 17) Open decisions to align as a team
 
-## 17) Decisoes abertas para alinhar em equipe
+- Exact number of rounds.
+- Final damage values by sea.
+- Rarity curve by zone.
+- Initial card count per player.
+- Final sinking rule (respawn vs elimination).
+- Desired randomness level (more strategy vs more chaos).
 
-- Numero exato de rodadas.
-- Valores finais de dano por mar.
-- Curva de raridade por zona.
-- Quantidade inicial de cartas por jogador.
-- Regra final de afundamento (respawn vs eliminacao).
-- Nivel de aleatoriedade desejado (mais estrategia vs mais caos).
+## 18) Temporary game name
 
-
-## 18) Nome temporario do jogo
-
-Sugestao de codinome interno:
+Suggested internal codename:
 
 - Five Seas: Fisher Clash
 
-Pode ser alterado depois sem impacto tecnico.
+Can be changed later with no technical impact.

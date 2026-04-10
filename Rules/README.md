@@ -1,29 +1,29 @@
-# Transcendence - Estrutura de Regras
+# Transcendence - Rules Structure
 
-Este diretorio organiza o esboço do jogo em arquivos menores para facilitar evolucao, testes e implementacao.
+This directory organizes the game draft into smaller files to make evolution, testing, and implementation easier.
 
-## Estrutura
+## Structure
 
-- [Visao geral](core/visao-geral.md)
-- [Mapa e mares](core/mapa-e-mares.md)
-- [Turno e acoes](core/turno-e-acoes.md)
-- [Combate, vida e eliminacao](core/combate-vida-e-eliminacao.md)
-- [Pesca e economia](core/pesca-e-economia.md)
-- [Modo rapido](modes/modo-rapido.md)
-- [Modo normal](modes/modo-normal.md)
-- [Modelo online](networking/modelo-online.md)
+- [Overview](core/overview.md)
+- [Map and seas](core/map-and-seas.md)
+- [Turn flow and actions](core/turn-flow-and-actions.md)
+- [Combat, health, and elimination](core/combat-health-and-elimination.md)
+- [Fishing and economy](core/fishing-and-economy.md)
+- [Quick mode](modes/quick-mode.md)
+- [Normal mode](modes/normal-mode.md)
+- [Online model](networking/online-model.md)
 - [MVP](roadmap/mvp.md)
-- [Decisoes abertas](roadmap/decisoes-abertas.md)
+- [Open decisions](roadmap/open-decisions.md)
 
-## Ideia central
+## Core idea
 
-Os dois modos compartilham o mesmo nucleo do jogo. O modo rapido reduz duracao e complexidade; o modo normal amplia as interacoes e a profundidade estrategica.
+Both modes share the same game core. Quick mode reduces duration and complexity, while Normal mode expands interactions and strategic depth.
 
-## Ajustes que podem ser testados depois
+## Tunables to test later
 
-- numero de rodadas por modo;
-- dano base por mar;
-- bonus de lotacao;
-- mao inicial de cartas;
-- limites de pesca e venda;
-- curva de raridade por mar.
+- number of rounds per mode;
+- base damage per sea;
+- crowding bonus;
+- starting hand size;
+- fishing and selling limits;
+- rarity curve per sea.

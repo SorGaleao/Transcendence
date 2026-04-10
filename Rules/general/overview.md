@@ -1,15 +1,15 @@
-# Overview Geral
+# General Overview
 
-Esta pasta concentra ideias transversais que valem para todo o jogo.
+This folder contains cross-cutting ideas that apply to the whole game.
 
-## Conteudos ideais
+## Ideal contents
 
-- identidade do projeto;
-- resumo das regras;
-- comparativo entre modos;
-- direcao de experiencia do jogador;
-- observacoes de implementacao.
+- project identity;
+- rules summary;
+- mode comparison;
+- player experience direction;
+- implementation notes.
 
-## Complemento
+## Additional note
 
-Se for util, esta pasta pode virar o ponto de entrada da documentacao, com links para as areas de combate, cartas, pesca, rede e roadmap.
+If useful, this folder can become the documentation entry point, linking to combat, cards, fishing, networking, and roadmap sections.
