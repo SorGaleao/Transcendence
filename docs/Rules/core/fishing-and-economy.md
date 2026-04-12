@@ -42,6 +42,11 @@
 
 - Fish can only be sold in the lagoon, which acts as the shared market hub.
 
+## Cargo limit
+
+- Each player has 4 fish slots in cargo.
+- If cargo is full, the player must sell, swap, discard, or use an effect that frees space before gaining another fish.
+
 ## Optional emergency sale (end of round)
 
 - After hazards and reward/consequence cards, a player outside the lagoon may sell individual fish.

@@ -15,12 +15,13 @@
 
 - the ship sinks;
 - the player loses all fish cargo;
-- the player loses a percentage of gold (suggestion: 25% to 40%, rounded down);
-- they return to the lagoon with partial HP on the next turn or the following turn, depending on the mode.
+- if the player has gold, they lose 30% of current gold, rounded down;
+- if the player has no gold, they lose no gold;
+- they return to the lagoon with 5 HP if they had gold, or 4 HP if they had no gold.
 
 ## Additional rule
 
-To avoid early exclusion, respawn can happen with a controlled penalty, but the default rule should be: full cargo loss, partial gold loss, and return to the lagoon.
+To avoid early exclusion, respawn uses a controlled penalty: full cargo loss, gold loss only when applicable, and guaranteed return to the lagoon.
 
 ## Repair dock
 

@@ -54,9 +54,19 @@ The lagoon remains the central safe zone, the default return point after defeat,
 - Optional extended mode can use 6 rounds if turn timers stay strict.
 - At the end, the player with the most coins wins.
 - Tiebreakers:
-1. Highest value of completed fish sets.
-2. Highest number of sold rare fish.
-3. Highest remaining HP.
+1. Treasure Chest obtained.
+2. Highest number of epic fish caught during the match.
+3. Highest number of rounds spent in Outer D.
+4. Highest number of rare fish caught during the match.
+5. Highest number of rounds spent in Outer C.
+
+## 4.1) Initial setup
+
+- Starting HP: 10.
+- Starting gold: 0.
+- All players start in the lagoon.
+- Starting cargo limit: 4 fish slots.
+- Players can only gain gold by selling fish or by card effects.
 
 ## 5) Turn structure
 
@@ -128,8 +138,9 @@ When HP reaches 0:
 
 - Ship sinks.
 - Player loses all fish cargo.
-- Player loses a percentage of gold (suggestion: 25% to 40%, rounded down).
-- Player returns next turn to the lagoon with partial HP (suggestion: 6).
+- If the player has gold, they lose 30% of current gold, rounded down.
+- If the player has no gold, they lose no gold.
+- Player returns to the lagoon with 5 HP if they had gold, or 4 HP if they had no gold.
 
 Repair note:
 
@@ -165,6 +176,11 @@ Special catches:
 
 - Trash (Lixo - no scientific name, 0 gold)
 - Treasure Chest (Baú do Tesouro - no scientific name, only one per match, 20 gold)
+
+Cargo limit:
+
+- Each player has 4 fish slots in cargo.
+- If cargo is full, the player must sell, swap, discard, or use an effect that frees space before gaining another fish.
 
 Hybrid stock limits (V1, tuned for 6 players and 5 rounds):
 
