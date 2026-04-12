@@ -41,10 +41,22 @@ The lagoon is a shared safe hub:
 
 Occupancy rule:
 
-- If an outer sea is free, the player may enter it.
+- If an outer sea is free, the player must resolve Battle Against the Tide before entering.
 - If an outer sea is occupied, the incoming player must challenge the occupant in a battle.
 - The loser of the battle always returns to the lagoon.
 - The winner stays in the target sea.
+
+Battle Against the Tide (empty outer sea only):
+
+- The player rolls 1d6 with no combat modifiers.
+- Success thresholds by sea:
+	- Outer A: 2+
+	- Outer B: 3+
+	- Outer C: 4+
+	- Outer D: 5+
+- On success, the player enters and occupies the target sea.
+- On failure, the player returns to the lagoon and takes no damage.
+- This is not player-vs-player combat and does not trigger battle win/loss card effects.
 
 The lagoon remains the central safe zone, the default return point after defeat, and the only shared market zone.
 
@@ -80,11 +92,11 @@ Each round has the following 6 phases:
 
 3. Movement and Battles
 - Player may move once to any sea.
-- If the target sea is free, the player enters it.
+- If the target sea is free outer sea, resolve Battle Against the Tide.
 - If the target sea is occupied, an occupation battle starts.
 - The loser returns to the lagoon.
 - If the player moves to an occupied sea, battle is mandatory.
-- If the player moves to a free outer sea, they may fortify defenses.
+- If Battle Against the Tide succeeds on a free outer sea, they may fortify defenses.
 - If the player moves to the lagoon, they may repair by paying gold or do nothing.
 
 4. Mandatory Fishing

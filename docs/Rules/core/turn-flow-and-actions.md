@@ -14,16 +14,28 @@ Each round can be divided into simple phases.
 ## Phase 3 decision outcomes
 
 - If the player moves to an occupied sea, battle is mandatory.
-- If the player moves to a free outer sea, the player may fortify defenses.
+- If the player moves to a free outer sea, the player must resolve Battle Against the Tide.
 - If the player moves to the lagoon, the player may repair by paying gold or do nothing.
 
 ## Movement rule
 
 - Each player may move once per round.
-- A player may move to any sea if it is free.
+- If an outer sea is free, the player must resolve Battle Against the Tide before entering.
 - If the target sea is occupied, a battle starts.
 - The loser of the battle always returns to the lagoon.
 - The winner occupies the target sea.
+
+## Battle Against the Tide (free outer sea)
+
+- Roll 1d6 with no combat modifiers.
+- Entry success thresholds:
+	- Outer A: 2+
+	- Outer B: 3+
+	- Outer C: 4+
+	- Outer D: 5+
+- On success, the player enters and occupies the target sea.
+- On failure, the player returns to the lagoon and takes no damage.
+- This is not player-vs-player combat and does not trigger battle win/loss card effects.
 
 ## Trading and market rule
 
