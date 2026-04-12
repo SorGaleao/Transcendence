@@ -9,7 +9,6 @@ This directory organizes the game draft into smaller files to make evolution, te
 - [Turn flow and actions](core/turn-flow-and-actions.md)
 - [Combat, health, and elimination](core/combat-health-and-elimination.md)
 - [Fishing and economy](core/fishing-and-economy.md)
-- [Quick mode](modes/quick-mode.md)
 - [Normal mode](modes/normal-mode.md)
 - [Online model](networking/online-model.md)
 - [MVP](roadmap/mvp.md)
@@ -17,13 +16,11 @@ This directory organizes the game draft into smaller files to make evolution, te
 
 ## Core idea
 
-Both modes share the same game core. Quick mode reduces duration and complexity, while Normal mode expands interactions and strategic depth.
+The current focus is one locked V1 ruleset. Additional mode variants are postponed.
 
 ## Tunables to test later
 
-- number of rounds per mode;
+- optional seed usage;
 - base damage per sea;
-- crowding bonus;
-- starting hand size;
-- fishing and selling limits;
+- fishing and selling value balance;
 - rarity curve per sea.
