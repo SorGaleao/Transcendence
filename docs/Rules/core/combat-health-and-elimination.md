@@ -8,8 +8,7 @@
 
 - sea hazards;
 - offensive-effect cards;
-- direct combat in normal mode;
-- crowding pressure in quick mode.
+- direct combat.
 
 ## When HP reaches zero
 

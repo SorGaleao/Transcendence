@@ -2,7 +2,7 @@
 
 The board has 5 seas:
 
-- 1 central sea
+- 1 central lagoon
 - 4 outer seas around the center
 
 ## Difficulty progression
@@ -16,7 +16,7 @@ From safest route to riskiest:
 
 ## Role of each sea
 
-- Central Sea: support, recovery, and low risk.
+- Lagoon: support, recovery, and low risk.
 - Outer A: safest entry point for better fishing.
 - Outer B: mid-level area with balanced outcomes.
 - Outer C: high risk with better rewards.

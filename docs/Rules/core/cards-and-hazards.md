@@ -44,4 +44,4 @@ Roll 1d6 for the sea where the player ends the turn.
 
 ## Additional rule
 
-In quick mode, hazard level can scale with sea crowding. In normal mode, this same system can coexist with more complex events, such as attack cards, blocks, or interference between players.
+Additional hazard variants are postponed. V1 uses only the fixed environmental table defined above.

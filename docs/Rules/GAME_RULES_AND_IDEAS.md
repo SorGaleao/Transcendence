@@ -13,7 +13,7 @@ Online multiplayer game concept with fishing ships and light pirate-style confli
 
 The board has 5 seas:
 
-- 1 central sea (calmer).
+- 1 central lagoon (safe hub).
 - 4 outer seas around the center.
 
 Difficulty rule (clockwise from the top-right corner):
@@ -50,8 +50,7 @@ The lagoon remains the central safe zone, the default return point after defeat,
 
 ## 4) Win condition
 
-- Match lasts 5 rounds by default (target match length: 30-40 minutes).
-- Optional extended mode can use 6 rounds if turn timers stay strict.
+- Match lasts 5 rounds (target match length: 30-40 minutes).
 - At the end, the player with the most coins wins.
 - Tiebreakers:
 1. Treasure Chest obtained.
@@ -107,13 +106,15 @@ Each round has the following 6 phases:
 Combat occurs when:
 
 - a player tries to enter an occupied sea,
-- a card or skill creates direct conflict.
+- a card creates direct conflict.
 
 Suggested format for fast online combat:
 
+- All ships have base attack 0 in V1, unless modified by cards.
 - Each side rolls 1d6 + ship attack + card modifiers.
-- Loser takes damage equal to the difference (minimum 1).
-- Best of 3 exchanges, or until one side yields.
+- Combat is resolved in a single exchange.
+- The loser always takes 2 damage.
+- If there is a tie, the defender wins.
 
 Result in occupation disputes:
 
@@ -151,7 +152,7 @@ Repair note:
 Design note:
 
 - Avoiding permanent elimination improves online experience (nobody sits out too long).
-- Optional hardcore mode can allow permanent death.
+- V1 has no permanent elimination mode.
 
 ## 8) Fishing and economy
 
@@ -277,17 +278,39 @@ Initial deck with Florianopolis-themed cards (events on hold):
 - Tide Choice: during mandatory fishing, you may make a second catch, then choose one of the two catches to keep and discard the other.
 - Fisher's Swap: choose one fish from your cargo and one fish from another player; both fishes are exchanged.
 
-Card rules:
+Card system (V1 closed):
 
-- Suggested max hand size: 3 cards.
-- Suggested draw rate: 1 card every 2 rounds.
-- Per-turn limit: 1 card (unless a special effect says otherwise).
+- Deck size: 24 cards.
+- Starting hand: 2 cards per player.
+- Draw timing: draw 1 card at the start of rounds 2 and 4.
+- Hand limit: 3 cards (discard immediately if exceeded).
+
+Card timing and limits:
+
+- Action window: Phase 2 (Action Cards).
+- Reaction window: combat and hazard checks only, when a card explicitly says so.
+- Per-round limit: 1 action card + 1 reaction card.
+- Phase 6 (Emergency Sale): no card can be played.
+
+Targeting and conflict rules:
+
+- Combat cards may only affect players in the same battle.
+- Theft/swap cards may target any player with valid cargo.
+- If a target has no valid fish, the card cannot be played on that target.
+- Anti-focus rule: the same attacker cannot apply more than one hostile card to the same target in one round.
+
+Economy card constraints:
+
+- Wharf Bargain applies only to lagoon market sale.
+- Wharf Bargain never applies to emergency sale.
+- Tide Choice uses the same sea fishing table for both catches.
+- If cargo is full during Tide Choice resolution, choose one final catch to keep and discard the other result.
 
 Design constraints for cards:
 
 - Keep card text short and deterministic for multiplayer sync.
 - Prioritize map positioning, fishing, and economy over pure damage.
-- At least 60% of cards should be useful in both quick mode and normal mode.
+- Card effects must stay consistent with the fixed V1 turn flow.
 
 ## 11) Sea hazards
 
@@ -366,12 +389,12 @@ Robustness requirements:
 1. Lobby
 - Room creation.
 - 6 to 8 players join.
-- Configuration choice (round count, normal/hardcore mode, optional seed).
+- Configuration choice (optional seed).
 
 2. Setup
 - Initial ship distribution.
-- Initial placement in central sea.
-- Optional starting cards.
+- Initial placement in lagoon.
+- Starting hand: 2 cards per player.
 
 3. Rounds
 - Execute turn phases for all players.
@@ -382,110 +405,6 @@ Robustness requirements:
 - Set bonuses.
 - Tiebreakers.
 - Final screen with ranking and statistics.
-
-## 13.1) Quick mode for evaluation
-
-Mode designed for short matches and easier in-class testing.
-
-Mode goals:
-
-- reduce total match duration;
-- preserve risk vs reward;
-- simplify cards and decisions;
-- remove direct player-vs-player combat.
-
-Main rules:
-
-- 4 to 6 rounds;
-- no hard limit of ships per sea;
-- player contention happens indirectly through crowding pressure in the same sea;
-- action cards are simpler and have immediate effects.
-
-Sea crowding hazard:
-
-- each sea has its base hazard;
-- each extra player in the same sea increases hazard;
-- simple suggestion: for each ship above the first in the same sea, everyone there receives +1 damage or +1 on hazard test;
-- this increase can have a cap to avoid extremes, for example +3 max;
-- this makes crowded seas riskier even without direct combat.
-
-Simplified turn structure:
-
-1. Movement
-- player chooses a destination sea;
-- player may move or stay;
-- crowded seas do not block entry.
-
-2. Sea hazard
-- apply base hazard from that sea;
-- apply crowding bonus based on number of ships present.
-
-3. Mandatory fishing
-- every player fishes at end of turn;
-- more dangerous seas offer better fishing with more risk.
-
-4. Market
-- player may sell fish or hold them for sets.
-
-Simplified cards:
-
-- Quick Movement: move with no extra cost.
-- Light Repair: recover 1 or 2 health.
-- Naval Shield: ignore 1 damage this turn.
-- Improved Net: gain +1 fish while fishing.
-- Favorable Sale: sell with a small bonus.
-
-What this mode gains:
-
-- shorter matches;
-- fewer rules to explain;
-- less downtime;
-- stronger focus on positioning and environmental risk.
-
-What this mode loses:
-
-- less direct confrontation;
-- less player-driven unpredictability;
-- less tactical depth from combat.
-
-Provisional conclusion:
-
-- for project evaluation, this quick mode appears to be a good choice;
-- it preserves game identity and shortens match time without removing the key decision between safer and riskier seas.
-
-## 13.2) How to support both modes without duplicating work
-
-Best strategy: share one game core and change only parameters and a few mode-specific rules.
-
-Shared base for both modes:
-
-- same match structure;
-- same seas and fishing system;
-- same coin economy and fish selling;
-- same card system, with different card lists by mode;
-- same server turn model.
-
-Differences by configuration:
-
-- number of rounds;
-- presence or absence of ship limits per sea;
-- environmental hazard intensity;
-- presence or absence of direct combat;
-- card quantity and complexity.
-
-Practical organization:
-
-- quick mode can be the default evaluation mode;
-- normal mode reuses the same phases with richer rules;
-- whenever possible, logic should come from a configuration such as mode = quick or mode = full;
-- this avoids building two separate games.
-
-Benefits of this approach:
-
-- less duplicated code;
-- lower bug risk;
-- simpler balancing;
-- easier demonstration without abandoning the complete-mode vision.
 
 ## 14) Useful metrics and statistics
 
@@ -521,12 +440,8 @@ Iteration 2 items:
 
 ## 16) Open decisions to align as a team
 
-- Exact number of rounds.
-- Final damage values by sea.
-- Rarity curve by zone.
-- Initial card count per player.
-- Final sinking rule (respawn vs elimination).
-- Desired randomness level (more strategy vs more chaos).
+- No open decisions for V1 at this time.
+- Additional mode variants (including Quick Mode) are postponed to a future revision cycle.
 
 ## 17) Temporary game name
 

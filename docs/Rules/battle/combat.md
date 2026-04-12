@@ -13,10 +13,12 @@ This folder covers conflict and contention between players.
 - One ship may occupy each outer sea at a time.
 - The lagoon is a shared hub and is not resolved through occupation combat.
 - If a player tries to enter an occupied outer sea, a battle starts between attacker and defender.
+- Each side resolves one combat roll (single exchange).
+- The loser always takes 2 damage.
+- If both sides tie, the defender wins.
 - The winner occupies the sea.
 - The loser always returns to the lagoon.
-- The loser also resolves the combat damage from the exchange.
 
 ## Additional note
 
-In quick mode, combat remains simple and only exists to resolve occupation disputes. It does not create multi-target or chained battles.
+V1 combat only resolves occupation disputes and does not create multi-target or chained battles.

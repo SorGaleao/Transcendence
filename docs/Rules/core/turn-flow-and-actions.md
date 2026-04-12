@@ -43,6 +43,14 @@ Each round can be divided into simple phases.
 - Resolve post-battle and post-fishing card effects in Phase 5.
 - Typical cards in this phase include outcome-based cards such as Naufragados Wreck and Hidden Current.
 
+## Card timing and reaction order
+
+- Action cards are played in Phase 2.
+- Reaction cards can only be played during combat/hazard resolution if card text allows it.
+- Per-round limit: 1 action card + 1 reaction card per player.
+- If two effects conflict, resolve the reaction first, then the original effect.
+- If priority is still tied, resolve by round turn order.
+
 ## Repair rule
 
 - Repairing the ship is only possible in the lagoon.
@@ -51,4 +59,4 @@ Each round can be divided into simple phases.
 
 ## Additional idea
 
-For quick mode, keep one main decision per turn plus one movement attempt. This reduces downtime and avoids long turns. In normal mode, this layer can expand with more interactions and reaction cards.
+V1 uses this fixed turn flow as the official baseline. Additional mode variants are postponed.

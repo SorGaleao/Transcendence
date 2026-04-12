@@ -12,7 +12,7 @@ Cards should use Florianopolis island identity (lagoon, channel, south coast, lo
 
 - Witches of the Lagoon: gain +1 attack in the next battle you fight this round.
 - South Wind: if you defend a sea, the attacker gets -1 in the next combat exchange.
-- Hidden Current: if you win a battle, the loser gives you 1 of his fishes.
+- Channel Passage: move to any sea this turn and immediately challenge the occupant if the sea is already taken.
 
 ### Defense and survival
 
@@ -40,6 +40,34 @@ Cards should use Florianopolis island identity (lagoon, channel, south coast, lo
 - Naufragados Wreck: if you win a battle in the hardest sea, gain 2 coins (resolve in Reward/Consequence phase).
 - Hidden Current: if you win a battle, the loser gives you 1 fish (resolve in Reward/Consequence phase).
 - Tide of the Island: the next player who enters your sea takes +1 damage from the battle.
+
+## V1 deck structure
+
+- Deck size: 24 cards.
+- Starting hand: 2 cards per player.
+- Draw timing: draw 1 card at the start of rounds 2 and 4.
+- Hand limit: 3 cards (discard immediately if exceeded).
+
+## V1 usage windows
+
+- Action cards: Phase 2.
+- Reaction cards: only during combat/hazard resolution when the card text allows it.
+- Limit per round: 1 action card + 1 reaction card.
+- No cards may be played in Phase 6 (Emergency Sale).
+
+## V1 targeting rules
+
+- Combat cards can only target players in the same battle.
+- Theft/swap cards can target any player with valid fish cargo.
+- If a target has no valid fish, that target is invalid for the card.
+- Anti-focus: one attacker cannot apply more than one hostile card to the same target in the same round.
+
+## Economy card constraints
+
+- Wharf Bargain only applies in lagoon market sale.
+- Wharf Bargain does not apply in emergency sale.
+- Tide Choice uses the same sea table for both catches.
+- If cargo is full, resolve both catches and keep only one final result.
 
 ## Phase mapping
 
