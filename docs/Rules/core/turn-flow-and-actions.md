@@ -9,6 +9,7 @@ Each round can be divided into simple phases.
 3. Movement and battles
 4. Mandatory fishing
 5. Reward/consequence cards
+6. Optional emergency sale
 
 ## Phase 3 decision outcomes
 
@@ -29,6 +30,13 @@ Each round can be divided into simple phases.
 - Trading is optional and resolved in Phase 1.
 - Players may negotiate regardless of where they are.
 - Selling fish is only possible in the lagoon.
+
+## Emergency sale rule
+
+- Emergency sale is optional and resolved in Phase 6.
+- A player outside the lagoon may sell individual fish for 50% of base value (round down).
+- Set bonuses and market bonuses never apply in emergency sale.
+- Emergency sale does not move the player; sea occupancy is unchanged.
 
 ## Reward/consequence card rule
 

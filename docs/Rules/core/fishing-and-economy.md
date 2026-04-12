@@ -42,13 +42,21 @@
 
 - Fish can only be sold in the lagoon, which acts as the shared market hub.
 
+## Optional emergency sale (end of round)
+
+- After hazards and reward/consequence cards, a player outside the lagoon may sell individual fish.
+- Emergency sale value is 50% of base fish value (round down).
+- Set bonuses and market bonuses are lagoon-only and never apply in emergency sale.
+- Emergency sale does not change player location.
+
 ## Fishing resolution (V1)
 
-- Every player gets 1 mandatory catch per turn.
-- A +fish card adds +1 catch, up to a maximum of 2 catches per turn in V1.
+- Every player gets exactly 1 mandatory catch per turn.
+- Extra catches are not part of the base rule and can only happen through card effects.
+- If a card grants a second catch, resolve both catches and keep only one result.
 - If the player is in Outer C or Outer D, roll for Treasure Chest first if it has not appeared yet.
 - Then roll the rarity band based on the sea:
-	- Lagoon: 68% common, 20% uncommon, 12% trash.
+	- Lagoon: 70% common, 20% uncommon, 10% trash.
 	- Outer A: 55% common, 30% uncommon, 10% rare, 5% trash.
 	- Outer B: 32% common, 45% uncommon, 20% rare, 3% trash.
 	- Outer C: 15% common, 35% uncommon, 49% rare, 1% trash.

@@ -25,11 +25,13 @@ Cards should use Florianopolis island identity (lagoon, channel, south coast, lo
 - Tainha Season: +1 fish during mandatory fishing.
 - Net of the Rendeiras: trade 1 common fish for 1 uncommon fish, of the same sea.
 - Wharf Bargain: +20% value when you sell fish in the lagoon Market Phase.
+- Tide Choice: during mandatory fishing, make a second catch, then choose only one of the two catches to keep.
 
 ### Direct theft and pressure
 
 - Random Theft: steal 1 random fish from a target player of your choice.
 - Targeted Theft: steal 1 specific fish from a target player of your choice, if they have it.
+- Fisher's Swap: choose 1 fish from your cargo and 1 fish from a target player's cargo; exchange both fishes.
 - Tide Purge: choose one fish type; all players, including you, discard all fish of that type.
 - Shared Tide: choose one player; for 1 round, that player mirrors the fish and environmental damage you receive during your turn, without changing sea occupancy.
 

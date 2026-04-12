@@ -60,7 +60,7 @@ The lagoon remains the central safe zone, the default return point after defeat,
 
 ## 5) Turn structure
 
-Each round has the following 5 phases:
+Each round has the following 6 phases:
 
 1. Optional Trading and Market
 - Players may negotiate with any player regardless of location.
@@ -85,6 +85,12 @@ Each round has the following 5 phases:
 5. Reward/Consequence Cards
 - Resolve cards that trigger after fishing or after battle outcomes.
 - Example cards in this phase: Naufragados Wreck, Hidden Current.
+
+6. Optional Emergency Sale
+- After hazards and reward/consequence effects, the player may sell fish even outside the lagoon.
+- Emergency sale pays 50% of base fish value (round down).
+- Set bonuses and market bonuses do not apply.
+- Selling sets remains lagoon-only.
 
 ## 6) Combat system
 
@@ -171,15 +177,16 @@ Hybrid stock limits (V1, tuned for 6 players and 5 rounds):
 
 Fishing resolution (V1):
 
-- Every player gets 1 mandatory catch per turn.
-- A +fish card adds +1 catch, up to a maximum of 2 catches per turn in V1.
+- Every player gets exactly 1 mandatory catch per turn.
+- Extra catches are never part of the base rule; they only happen through card effects.
+- If a card grants a second catch, the player resolves two catches and keeps only one result.
 - If the player is in Outer C or Outer D, roll for Treasure Chest first if it has not appeared yet.
 - Then roll the rarity band based on the sea:
-	- Lagoon: 65% common, 10% uncommon, 25% trash.
-	- Outer A: 55% common, 35% uncommon, 10% trash.
-	- Outer B: 40% common, 40% uncommon, 20% rare.
-	- Outer C: 20% common, 35% uncommon, 40% rare, 5% trash.
-	- Outer D: 10% common, 20% uncommon, 45% rare, 25% epic.
+	- Lagoon: 70% common, 20% uncommon, 10% trash.
+	- Outer A: 55% common, 30% uncommon, 10% rare, 5% trash.
+	- Outer B: 32% common, 45% uncommon, 20% rare, 3% trash.
+	- Outer C: 15% common, 35% uncommon, 49% rare, 1% trash.
+	- Outer D: 5% common, 20% uncommon, 50% rare, 25% epic.
 - Within each rarity band, choose the specific fish by weighted order or equal split.
 - Treasure Chest, if found, replaces the normal fish catch for that roll.
 - If a rolled rarity pool is depleted, fallback to the next lower rarity:
@@ -192,6 +199,12 @@ Selling:
 - Fish can only be sold in the lagoon.
 - Sold fish generate immediate coins.
 - Holding fish for set completion can give higher value later.
+
+Optional emergency sale (end of round):
+
+- A player outside the lagoon may sell individual fish for 50% of base value (round down).
+- Set bonuses and market bonuses are lagoon-only and never apply in emergency sale.
+- This rule exists as risk mitigation and does not change sea occupancy.
 
 Suggested base fish values (V1):
 
@@ -245,6 +258,8 @@ Initial deck with Florianopolis-themed cards (events on hold):
 - Hidden Current: if you win a battle, the loser gives you 1 fish (resolve in Reward/Consequence phase).
 - Lantern of the Watchman: ignore environmental damage this turn.
 - Tide of the Island: the next player who challenges your sea takes +1 damage from the battle, and you gain 1 coin.
+- Tide Choice: during mandatory fishing, you may make a second catch, then choose one of the two catches to keep and discard the other.
+- Fisher's Swap: choose one fish from your cargo and one fish from another player; both fishes are exchanged.
 
 Card rules:
 
