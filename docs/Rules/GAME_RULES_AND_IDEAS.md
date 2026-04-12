@@ -50,7 +50,8 @@ The lagoon remains the central safe zone, the default return point after defeat,
 
 ## 4) Win condition
 
-- Match lasts a fixed number of rounds (suggestion: 10 to 14).
+- Match lasts 5 rounds by default (target match length: 30-40 minutes).
+- Optional extended mode can use 6 rounds if turn timers stay strict.
 - At the end, the player with the most coins wins.
 - Tiebreakers:
 1. Highest value of completed fish sets.
@@ -59,43 +60,33 @@ The lagoon remains the central safe zone, the default return point after defeat,
 
 ## 5) Turn structure
 
-Each round has the following phases:
+Each round has the following 5 phases:
 
-1. Planning Phase
-- Player chooses 1 main action (or more if cards allow it).
+1. Optional Trading and Market
+- Players may negotiate with any player regardless of location.
+- Fish can be sold only if the player is currently in the lagoon.
 
-2. Movement Phase
+2. Action Cards
+- Player may play action cards according to hand and turn limits.
+
+3. Movement and Battles
 - Player may move once to any sea.
 - If the target sea is free, the player enters it.
 - If the target sea is occupied, an occupation battle starts.
 - The loser returns to the lagoon.
+- If the player moves to an occupied sea, battle is mandatory.
+- If the player moves to a free outer sea, they may fortify defenses.
+- If the player moves to the lagoon, they may repair by paying gold or do nothing.
 
-3. Action Phase
-- Player uses active cards/effects.
-- Offensive, defensive, or economic actions.
-
-4. Environmental Hazard Phase
-- Each player in a sea resolves that sea's hazard.
-
-5. Fishing Phase (mandatory)
+4. Mandatory Fishing
 - Every player must fish at the end of the turn.
-- Quantity and quality depend on sea and active buffs/debuffs.
+- Quantity and quality depend on sea and active effects.
 
-6. Market Phase
-- Player may sell part or all of cargo only while in the lagoon.
-- Fish sets grant sale bonuses.
+5. Reward/Consequence Cards
+- Resolve cards that trigger after fishing or after battle outcomes.
+- Example cards in this phase: Naufragados Wreck, Hidden Current.
 
-## 6) Available actions before ending the round
-
-Base action list per turn (1 main action by default):
-
-- Move to another sea.
-- Repair hull (recover health).
-- Fortify ship (temporary defense).
-- Play attack/defense/utility card.
-- Trade (sell with a small bonus in favorable market).
-
-## 7) Combat system
+## 6) Combat system
 
 Combat occurs when:
 
@@ -115,7 +106,7 @@ Result in occupation disputes:
 - If the attacker loses, the defender keeps the sea.
 - If the defender loses, the attacker occupies the sea.
 
-## 8) Health, damage, and elimination
+## 7) Health, damage, and elimination
 
 Suggested base health per ship:
 
@@ -145,29 +136,56 @@ Design note:
 - Avoiding permanent elimination improves online experience (nobody sits out too long).
 - Optional hardcore mode can allow permanent death.
 
-## 9) Fishing and economy
+## 8) Fishing and economy
 
-Fish types (initial example):
+Fish roster (V1):
 
-- Common: Sardine, Anchovy
-- Uncommon: Tuna, Mackerel
+- Common:
+	- Sardine (Sardinha - Sardinella brasiliensis)
+	- Whitemouth Croaker (Curvina - Micropogonias furnieri)
+	- Mullet (Tainha - Mugil liza)
+- Uncommon:
+	- Bluefish (Anchova - Pomatomus saltatrix)
+	- Stingray (Arraia - Hypanus americanus)
+	- Snook (Robalo - Centropomus undecimalis)
+- Rare:
+	- Flounder (Linguado - Paralichthys orbignyanus)
+	- Brazilian Sharpnose Shark (Cação - Rhizoprionodon lalandii)
+	- Dusky Grouper (Garoupa - Epinephelus marginatus)
+- Epic:
+	- Giant Grouper (Mero - Epinephelus itajara)
 
-### Direct theft and pressure
+Special catches:
 
-- Random Theft: steal 1 random fish from a player of your choice.
-- Targeted Theft: steal 1 specific fish from a player of your choice, if they have it.
-- Tide Purge: choose one fish type; all players, including you, discard all fish of that type.
-- Shared Tide: choose one player; for 1 round, that player mirrors the fish and environmental damage you receive during your turn, without changing sea occupancy.
-- Rare: Swordfish, Blue Salmon
-- Epic: Golden Sunfish
+- Trash (Lixo - no scientific name, 0 gold)
+- Treasure Chest (Baú do Tesouro - no scientific name, only one per match, 20 gold)
 
-Simple sea table (example):
+Hybrid stock limits (V1, tuned for 6 players and 5 rounds):
 
-- Central Sea: high common chance, low uncommon chance
-- Outer A: common + uncommon
-- Outer B: stable uncommon, low rare
-- Outer C: medium rare, high risk
-- Outer D: high rare, epic chance, very high risk
+- Common fish: unlimited (probability-based only).
+- Uncommon fish: unlimited (probability-based only).
+- Rare fish: 18 total per match (6 per rare species).
+- Epic fish: 6 total per match.
+- Treasure Chest: 1 total per match.
+- Trash: unlimited.
+
+Fishing resolution (V1):
+
+- Every player gets 1 mandatory catch per turn.
+- A +fish card adds +1 catch, up to a maximum of 2 catches per turn in V1.
+- If the player is in Outer C or Outer D, roll for Treasure Chest first if it has not appeared yet.
+- Then roll the rarity band based on the sea:
+	- Lagoon: 65% common, 10% uncommon, 25% trash.
+	- Outer A: 55% common, 35% uncommon, 10% trash.
+	- Outer B: 40% common, 40% uncommon, 20% rare.
+	- Outer C: 20% common, 35% uncommon, 40% rare, 5% trash.
+	- Outer D: 10% common, 20% uncommon, 45% rare, 25% epic.
+- Within each rarity band, choose the specific fish by weighted order or equal split.
+- Treasure Chest, if found, replaces the normal fish catch for that roll.
+- If a rolled rarity pool is depleted, fallback to the next lower rarity:
+	- epic -> rare
+	- rare -> uncommon
+	- uncommon -> common
 
 Selling:
 
@@ -175,20 +193,43 @@ Selling:
 - Sold fish generate immediate coins.
 - Holding fish for set completion can give higher value later.
 
-## 10) Fish sets (set collection)
+Suggested base fish values (V1):
+
+- Common: 2 gold
+- Uncommon: 4 gold
+- Rare: 7 gold
+- Epic: 12 gold
+
+Repair and sinking economy (V1):
+
+- If a player sinks, they lose 100% of fish cargo.
+- If a player sinks, they lose 30% of current gold (rounded down).
+- Repairing in the lagoon costs 2 gold per HP restored.
+- Suggested repair cap: 4 HP restored per round.
+
+## 9) Fish sets (set collection)
 
 Suggested sets:
 
-- Local School: 3 different common fish -> fixed sale bonus.
-- Export Batch: 2 uncommon + 1 rare -> high bonus.
-- Ocean Trophy: 2 rare + 1 epic -> very high bonus.
+- Local School: 3 different common fish -> +4 gold bonus.
+- Export Batch: 2 uncommon + 1 rare -> +8 gold bonus.
+- Ocean Trophy: 2 rare + 1 epic -> +15 gold bonus.
 
 Set rules:
 
 - Set can be sold at any time in Market Phase.
 - Selling a set consumes all fish used by that set.
 
-## 11) Action cards
+Negotiation rules (V1):
+
+- Negotiation is optional and occurs in Phase 1.
+- Players may negotiate regardless of sea position.
+- Allowed trades: fish-for-fish, fish-for-gold, and gold-for-gold.
+- Suggested limit: one completed negotiation per player per round.
+- Trades are immediate and must be accepted by both players.
+- No deferred promises (future turn deals are not enforceable by rules).
+
+## 10) Action cards
 
 Initial deck with Florianopolis-themed cards (events on hold):
 
@@ -196,12 +237,12 @@ Initial deck with Florianopolis-themed cards (events on hold):
 - South Wind: if you defend a sea, the attacker gets -1 in the first combat exchange.
 - Conceicao Mist: cancel one attack targeting you this turn.
 - Channel Passage: move to any sea this turn and immediately challenge the occupant if the sea is already taken.
-- Naufragados Wreck: gain +2 in one combat exchange in Outer D only.
+- Naufragados Wreck: if you win a battle in Outer D, gain +2 gold (resolve in Reward/Consequence phase).
 - Tainha Season: +1 fish in mandatory fishing this turn.
 - Fisherman's Blessing: heal 2 HP.
 - Net of the Rendeiras: convert 1 common fish into 1 uncommon fish.
 - Wharf Bargain: +20% sale value in this Market Phase.
-- Hidden Current: if you win a battle, the loser returns to the lagoon and loses 1 additional fish.
+- Hidden Current: if you win a battle, the loser gives you 1 fish (resolve in Reward/Consequence phase).
 - Lantern of the Watchman: ignore environmental damage this turn.
 - Tide of the Island: the next player who challenges your sea takes +1 damage from the battle, and you gain 1 coin.
 
@@ -217,23 +258,50 @@ Design constraints for cards:
 - Prioritize map positioning, fishing, and economy over pure damage.
 - At least 60% of cards should be useful in both quick mode and normal mode.
 
-## 12) Sea hazards
+## 11) Sea hazards
 
-Each outer sea has a risk table. Example:
+Environmental damage is resolved in Phase 4 (Mandatory Fishing), after movement/battle decisions are complete.
 
-- Outer A: 20% chance to take 1 damage.
-- Outer B: 30% chance to take 1 damage.
-- Outer C: 40% chance to take 1-2 damage.
-- Outer D: 50% chance to take 2 damage.
+Roll 1d6 for the sea where the player ends the turn.
 
-Hazards may include:
+Hazard table (V1):
+
+- Lagoon (Lagoa):
+	- Any result: 0 damage.
+	- Strategic role: safe hub for market and repairs.
+- Outer A:
+	- 1-2: 0 damage
+	- 3-6: 1 damage
+	- Expected damage: ~0.67 per turn
+- Outer B:
+	- 1: 0 damage
+	- 2-5: 1 damage
+	- 6: 2 damage
+	- Expected damage: 1.00 per turn
+- Outer C:
+	- 1: 0 damage
+	- 2 - 3: 1 damage
+	- 4 - 6: 2 damage
+	- Expected damage: ~1.33 per turn
+- Outer D:
+	- 1: 0 damage
+	- 2 - 4: 2 damage
+	- 5 - 6: 3 damage
+	- Expected damage: 2.00 per turn
+
+Persistence pressure (anti-camping):
+
+- If a player stays in the same outer sea for a consecutive turn, add +1 environmental damage (cap +1).
+- This modifier resets when the player changes sea or returns to the lagoon.
+
+Hazard flavor sources may include:
 
 - Storm.
 - Hidden rocks.
 - Strong current.
 - Sea monster.
 
-## 13) Synchronization rules for the online version
+## 12) Synchronization rules for the online version
 
 Because it is online, use a server-authoritative model:
 
@@ -262,7 +330,7 @@ Robustness requirements:
 - Turn timeout to prevent match stalls.
 - Event log for auditing and simple replay.
 
-## 14) Match flow (high-level)
+## 13) Match flow (high-level)
 
 1. Lobby
 - Room creation.
@@ -284,7 +352,7 @@ Robustness requirements:
 - Tiebreakers.
 - Final screen with ranking and statistics.
 
-## 14.1) Quick mode for evaluation
+## 13.1) Quick mode for evaluation
 
 Mode designed for short matches and easier in-class testing.
 
@@ -354,7 +422,7 @@ Provisional conclusion:
 - for project evaluation, this quick mode appears to be a good choice;
 - it preserves game identity and shortens match time without removing the key decision between safer and riskier seas.
 
-## 14.2) How to support both modes without duplicating work
+## 13.2) How to support both modes without duplicating work
 
 Best strategy: share one game core and change only parameters and a few mode-specific rules.
 
@@ -388,7 +456,7 @@ Benefits of this approach:
 - simpler balancing;
 - easier demonstration without abandoning the complete-mode vision.
 
-## 15) Useful metrics and statistics
+## 14) Useful metrics and statistics
 
 For match history and player profile:
 
@@ -400,7 +468,7 @@ For match history and player profile:
 - Win rate.
 - Most visited sea.
 
-## 16) MVP prototype focus
+## 15) MVP prototype focus
 
 Minimum playable scope (MVP):
 
@@ -420,7 +488,7 @@ Iteration 2 items:
 - Detailed match history.
 - Spectator mode.
 
-## 17) Open decisions to align as a team
+## 16) Open decisions to align as a team
 
 - Exact number of rounds.
 - Final damage values by sea.
@@ -429,7 +497,7 @@ Iteration 2 items:
 - Final sinking rule (respawn vs elimination).
 - Desired randomness level (more strategy vs more chaos).
 
-## 18) Temporary game name
+## 17) Temporary game name
 
 Suggested internal codename:
 

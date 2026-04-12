@@ -22,6 +22,14 @@ From safest route to riskiest:
 - Outer C: high risk with better rewards.
 - Outer D: most dangerous sea with highest rewards.
 
+## Hazard profile (V1)
+
+- Lagoon: no environmental damage.
+- Outer A: low environmental pressure.
+- Outer B: moderate pressure with occasional 2-damage spikes.
+- Outer C: consistently dangerous (1 to 3 damage).
+- Outer D: always risky with strong damage outcomes (0/2/3 by roll).
+
 ## Additional rule
 
 Instead of being only for movement, each sea should work as a decision zone: the more crowded and dangerous it is, the more valuable it becomes. This makes route choices meaningful even without direct combat.

@@ -35,8 +35,17 @@ Cards should use Florianopolis island identity (lagoon, channel, south coast, lo
 
 ### Sea control and rewards
 
-- Naufragados Wreck: if you win a battle in the hardest sea, gain 2 coins.
+- Naufragados Wreck: if you win a battle in the hardest sea, gain 2 coins (resolve in Reward/Consequence phase).
+- Hidden Current: if you win a battle, the loser gives you 1 fish (resolve in Reward/Consequence phase).
 - Tide of the Island: the next player who enters your sea takes +1 damage from the battle.
+
+## Phase mapping
+
+- Phase 1: optional negotiation (any location) and market sale in lagoon only.
+- Phase 2: action cards.
+- Phase 3: movement and occupation battles.
+- Phase 4: mandatory fishing.
+- Phase 5: reward/consequence cards (for example, Naufragados Wreck and Hidden Current).
 
 ## Balance rules
 

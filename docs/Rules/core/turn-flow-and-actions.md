@@ -4,21 +4,17 @@ Each round can be divided into simple phases.
 
 ## Suggested order
 
-1. Movement
-2. Sea hazard
-3. Mandatory fishing
-4. Market
-5. Pending effect resolution
+1. Optional trading and market
+2. Action cards
+3. Movement and battles
+4. Mandatory fishing
+5. Reward/consequence cards
 
-## Core actions
+## Phase 3 decision outcomes
 
-- move to another sea;
-- repair ship in the lagoon by paying gold;
-- repair hull;
-- reinforce ship;
-- play a card;
-- sell fish in the lagoon;
-- hold fish for a future set.
+- If the player moves to an occupied sea, battle is mandatory.
+- If the player moves to a free outer sea, the player may fortify defenses.
+- If the player moves to the lagoon, the player may repair by paying gold or do nothing.
 
 ## Movement rule
 
@@ -27,6 +23,17 @@ Each round can be divided into simple phases.
 - If the target sea is occupied, a battle starts.
 - The loser of the battle always returns to the lagoon.
 - The winner occupies the target sea.
+
+## Trading and market rule
+
+- Trading is optional and resolved in Phase 1.
+- Players may negotiate regardless of where they are.
+- Selling fish is only possible in the lagoon.
+
+## Reward/consequence card rule
+
+- Resolve post-battle and post-fishing card effects in Phase 5.
+- Typical cards in this phase include outcome-based cards such as Naufragados Wreck and Hidden Current.
 
 ## Repair rule
 
