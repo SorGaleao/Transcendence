@@ -17,8 +17,8 @@
 2. fishing and economy;
 3. sea hazard;
 4. basic cards;
-5. completed quick mode;
-6. normal mode refinements.
+5. rules consistency pass and playtest adjustments;
+6. post-V1 mode variants (optional).
 
 ## Additional idea
 

@@ -1,6 +1,6 @@
 # Normal Mode
 
-Full mode, with deeper strategy.
+Future expansion mode, with deeper strategy.
 
 ## Goals
 
@@ -19,7 +19,7 @@ Full mode, with deeper strategy.
 
 ## Role of normal mode
 
-It does not need to be fully ready for evaluation, as long as it shares the same base as quick mode. It can act as a future expansion without changing the core system.
+It is not part of the current V1 baseline. It can be developed as a future expansion without changing the core system.
 
 ## Additional idea
 
