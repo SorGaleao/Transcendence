@@ -289,13 +289,38 @@ Initial deck with Florianopolis-themed cards (events on hold):
 - Tide of the Island: the next player who challenges your sea takes +1 damage from the battle, and you gain 1 coin.
 - Tide Choice: during mandatory fishing, you may make a second catch, then choose one of the two catches to keep and discard the other.
 - Fisher's Swap: choose one fish from your cargo and one fish from another player; both fishes are exchanged.
+- Random Theft: steal 1 random fish from a target player of your choice.
+- Targeted Theft: steal 1 specific fish from a target player of your choice, if they have it.
+- Tide Purge: choose one fish type; all players, including you, discard all fish of that type.
+- Shared Tide: choose one player; for 1 round, that player mirrors the fish and environmental damage you receive during your turn, without changing sea occupancy.
 
 Card system (V1 closed):
 
-- Deck size: 24 cards.
-- Starting hand: 2 cards per player.
-- Draw timing: draw 1 card at the start of rounds 2 and 4.
+- Deck size: 60 cards.
+- Starting hand: 3 cards per player.
+- Draw timing: draw 1 card at the start of each round.
 - Hand limit: 3 cards (discard immediately if exceeded).
+
+V1 card copies (60-card deck):
+
+- Witches of the Lagoon: 4
+- South Wind: 3
+- Channel Passage: 4
+- Conceicao Mist: 4
+- Lantern of the Watchman: 3
+- Fisherman's Blessing: 4
+- Tainha Season: 4
+- Net of the Rendeiras: 3
+- Wharf Bargain: 3
+- Tide Choice: 4
+- Random Theft: 4
+- Targeted Theft: 3
+- Fisher's Swap: 3
+- Tide Purge: 2
+- Shared Tide: 2
+- Naufragados Wreck: 3
+- Hidden Current: 4
+- Tide of the Island: 3
 
 Card timing and limits:
 
@@ -406,7 +431,7 @@ Robustness requirements:
 2. Setup
 - Initial ship distribution.
 - Initial placement in lagoon.
-- Starting hand: 2 cards per player.
+- Starting hand: 3 cards per player.
 
 3. Rounds
 - Execute turn phases for all players.
