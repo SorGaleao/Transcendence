@@ -43,10 +43,31 @@ Cards should use Florianopolis island identity (lagoon, channel, south coast, lo
 
 ## V1 deck structure
 
-- Deck size: 24 cards.
-- Starting hand: 2 cards per player.
-- Draw timing: draw 1 card at the start of rounds 2 and 4.
+- Deck size: 60 cards.
+- Starting hand: 3 cards per player.
+- Draw timing: draw 1 card at the start of each round.
 - Hand limit: 3 cards (discard immediately if exceeded).
+
+## V1 card copies (60-card deck)
+
+- Witches of the Lagoon: 4
+- South Wind: 3
+- Channel Passage: 4
+- Conceicao Mist: 4
+- Lantern of the Watchman: 3
+- Fisherman's Blessing: 4
+- Tainha Season: 4
+- Net of the Rendeiras: 3
+- Wharf Bargain: 3
+- Tide Choice: 4
+- Random Theft: 4
+- Targeted Theft: 3
+- Fisher's Swap: 3
+- Tide Purge: 2
+- Shared Tide: 2
+- Naufragados Wreck: 3
+- Hidden Current: 4
+- Tide of the Island: 3
 
 ## V1 usage windows
 
