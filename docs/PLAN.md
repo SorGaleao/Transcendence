@@ -263,3 +263,56 @@ Bots must use the same system as real players.
 - Week 4 → game is demo-ready and stable  
 
 ---
+
+
+**Honest recommendation for a 4-week sprint:**
+
+## **Best Tech Stack**
+
+### **Backend + Core Engine: Node.js + TypeScript**
+- **Fastest development** for your timeline
+- WebSocket support is native and performant (use `socket.io` or `ws`)
+- Great npm ecosystem (libraries for everything)
+- Same language as frontend = easier team coordination
+- Good enough for game logic (not performance-critical on server side)
+
+### **Frontend: React + TypeScript**
+- Rapid UI development
+- Easy animations and real-time updates
+- Good component reusability for inventory/market UIs
+- Large community if you hit issues
+
+### **Database: PostgreSQL + Prisma ORM**
+- Simple to setup and query
+- Type-safe with TypeScript
+- Good for session/game state persistence
+
+### **Bots/AI: Python (separate service) OR Node.js**
+- If bots are simple (random + basic heuristics): integrate into Node.js
+- If they need ML: Python with `scikit-learn` or similar
+
+---
+
+## **Why this over C++:**
+
+1. **Speed matters** — 4 weeks is tight. Node.js has less boilerplate than C++
+2. **Easier debugging** — Web dev tools > C++ debugging for UI issues
+3. **Team fluidity** — One language stack (JavaScript/TypeScript) = easier collaboration
+4. **Deployability** — Node.js deploys faster, easier to host
+5. **Iteration** — Game balance tweaks ship faster
+
+---
+
+## **Alternative (if you want game-engine feel):**
+
+**Godot Engine** (GDScript backend + frontend in same tool)
+- Single engine for server + client logic
+- Much faster UI development than C++
+- Good for prototyping
+- Smaller learning curve if anyone knows Unreal/Unity
+
+---
+
+**Bottom line**: **Node.js + React + PostgreSQL** gives you the best velocity. Save C++ for when you have 3+ months and performance is actually a bottleneck.
+
+---
