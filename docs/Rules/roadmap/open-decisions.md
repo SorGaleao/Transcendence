@@ -2,15 +2,9 @@
 
 ## Items to finalize later
 
-- final number of rounds per mode;
-- base damage for each sea;
-- cap for crowding bonus;
-- starting hand size;
-- fish quantity per fishing action;
-- final sinking rule;
-- coin amount per sale;
-- final card list for normal mode.
+- No open decisions for V1 at this time.
+- Quick Mode and additional variants are intentionally postponed.
 
 ## Practical suggestion
 
-Finalize quick mode first, because it reduces evaluation scope and serves as the base for normal mode. After that, the full mode can be expanded without changing what is already validated.
+Run focused V1 playtests with the current locked ruleset, then revisit additional mode variants in a separate decision cycle.
