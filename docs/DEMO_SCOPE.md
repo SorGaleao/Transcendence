@@ -1,84 +1,78 @@
-# ft_transcendence Demo Scope — Minimal Viable Product
+# ft_transcendence Demo Scope — 17-Point MVP
 
-This document outlines the minimum features and implementation required for the demo to satisfy the ft_transcendence.pdf requirements. The goal is to deliver a functional, testable, and presentable demo within the 4-week plan. The full game and advanced features can be completed after this milestone.
+This document outlines the minimum features and implementation required for the demo to successfully pass the `ft_transcendence.pdf` evaluation in 4 weeks. 
+
+The goal is to secure exactly **17 points** of modules (providing a 3-point safety buffer) while strictly adhering to all mandatory technical constraints.
 
 ---
 
 ## 🎯 Demo Goals
-- Prove the core technical stack (Node.js/TypeScript backend, React frontend, PostgreSQL database, WebSocket communication)
-- Demonstrate multiplayer session with real-time interaction
-- Show basic game loop and player actions
-- Validate integration, persistence, and reconnection
+- Prove the core technical stack (Next.js/React frontend, Express/Node backend, PostgreSQL database, WebSocket communication).
+- Demonstrate 100% compliance with `ft_transcendence` mandatory rules (Docker, HTTPS, True Auth).
+- Demonstrate a 4-player multiplayer session with real-time interaction.
+- Secure 17 module points so the project can be officially evaluated in Week 4.
 
 ---
 
-## 🟢 Must-Have Features for Demo
+## 🟢 Must-Have Features for Demo (The 17 Points)
 
-### 1. User Authentication & Lobby
-- Simple login (can be nickname-based, no full auth required)
-- Lobby system: create/join game room
-- Display list of connected players
+### 1. Mandatory Infrastructure & Auth
+- **True Authentication**: Email/password registration and login with bcrypt hashing and JWT. (Nickname-only is an automatic fail).
+- **Dockerization**: The entire app launches via `docker-compose up --build`.
+- **HTTPS**: Backend and Frontend run over TLS/HTTPS locally.
+- **Compliance**: Accessible Privacy Policy and Terms of Service pages.
 
-### 2. Game Session & Turn System
-- Start game with 2+ players (bots can fill empty seats)
-- Server-authoritative turn system (players take turns in order)
-- Basic turn timer (optional, but recommended)
+### 2. Social & User Management
+- **User Profiles**: View stats, match history, and upload an avatar.
+- **Friend System**: Add/remove friends and see who is currently online.
+- **Global Chat**: Real-time chat lobby for all connected users.
 
-### 3. Map & Movement
-- Visualize 5-sea map (lagoon + 4 outer seas)
-- Players can move their ship to a sea (enforce occupancy rule)
-- Basic movement validation (no battle logic required for MVP)
+### 3. Game Session & Lobby
+- **Lobby System**: Create/join game rooms. Display a list of connected players.
+- **Game Customization**: Host can select "Map Theme" (Summer/Winter) and "Game Length" (4, 6, or 8 rounds) before starting.
+- **Spectator Mode**: Allow users to join a game room as viewers (action buttons hidden).
 
-### 4. Fishing & Economy
-- Each player can "fish" once per turn (random fish assigned)
-- Cargo limit enforced (e.g., 4 fish slots)
-- Fish can be sold in the lagoon for coins
-- Display player inventory and coin count
+### 4. Core Game Mechanics (Fisher Clash MVP)
+- **Movement (The 6-Sided Dice)**: On your turn, you roll a 6-sided dice to determine your destination:
+  - **1, 2, 3, or 4**: Sent to that specific Outer Sea.
+  - **5**: Sent to the **Center Lagoon** (Safe Zone / Market).
+  - **6**: **Joker!** You choose exactly which of the 5 seas you want to move to.
+- **Automatic Battle**: If you land in a Sea already occupied by another player, a **Battle** starts automatically (dice roll; loser drops all fish). The Lagoon is a Safe Zone (no battles allowed).
+- **Fishing & Economy**: 
+  - **Outer Seas**: High-value fish (Common/Uncommon/Rare).
+  - **Lagoon**: Low-value fish or "Trash" (Old Boots worth 0 coins).
+  - **Market**: You must be in the Center Lagoon to sell your cargo for coins.
+- **Game End Condition**: The game ends automatically based on the Host's "Game Length" setting (4, 6, or 8 rounds). The player with the most coins wins!
 
-### 5. Basic Bot Support
-- Bots fill empty seats and take random valid actions
-
-### 6. Persistence & Reconnection
-- Game state is saved in the database
-- Players can disconnect/reconnect and resume their session
-
-### 7. Minimal UI
-- Lobby screen
-- Game board with player positions
-- Inventory and coin display
-- Basic action buttons (move, fish, sell)
+### 5. Remote Players & Resilience
+- **Remote Play**: Users on 4 different computers can connect via local IP.
+- **Reconnection**: Game state is saved. If a player disconnects/closes their browser, the game pauses gracefully until they reconnect.
 
 ---
 
-## 🟡 What Can Be Deferred (Post-Demo)
-- Full card system and advanced card effects
-- Hazards and environmental damage
-- Combat/battle system for sea occupation
-- Advanced bot AI
-- Set collection bonuses
-- Market bonuses and emergency sale
-- Full statistics and match history
-- Spectator mode
-- Polished UI/UX and animations
-- Full authentication and user profiles
+## 🟡 What Can Be Deferred (Post-Evaluation)
+*Do NOT build these during the 4-week sprint. They are not required to pass.*
+- Bots and AI opponents.
+- Full card system and advanced card effects.
+- Hazards and environmental damage.
+- Complex Combat (e.g., custom weapons, defense cards, sea occupation logic).
+- OAuth (42/Google login) and 2FA.
+- Complex 3D graphics or heavy animations.
 
 ---
 
 ## 📝 Implementation Notes
-- Focus on stability, clear code structure, and integration
-- All actions must be validated server-side (no client-side cheating)
-- Use WebSocket events for all real-time updates
-- Keep the codebase modular to allow easy extension after the demo
+- Focus on stability, clear code structure, and the **Vertical Slice** division of labor.
+- All game actions must be validated server-side (no client-side cheating).
+- Use WebSocket events for all real-time updates; use REST APIs for standard CRUD operations.
+- The project is a Monorepo: share TypeScript interfaces (`GameState`, `User`) between Frontend and Backend.
 
 ---
 
-## ✅ Demo Success Criteria
-- Multiple users can join a lobby and start a game
-- Players can move, fish, and sell fish for coins
-- Game state persists and recovers after disconnect
-- All actions are reflected in real time for all players
-- The demo is playable, stable, and demonstrates the core architecture
-
----
-
-This scope ensures you meet the ft_transcendence.pdf requirements for the demo milestone. After this, you can extend to the full game with all advanced features and polish.
+## ✅ Demo Success Criteria (Evaluation Readiness)
+- [ ] `docker-compose up` launches the DB, Backend, and Frontend flawlessly over HTTPS.
+- [ ] 4 evaluators can register accounts with passwords and log in.
+- [ ] Evaluators can add each other as friends and chat in the global lobby.
+- [ ] 4 evaluators can join a single game room and play a full match of Fisher Clash.
+- [ ] If an evaluator refreshes their page mid-game, they rejoin seamlessly without crashing the server.
+- [ ] After the game ends, the winner's stats update on their Profile Page.

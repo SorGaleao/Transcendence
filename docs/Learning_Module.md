@@ -47,7 +47,6 @@ enum Phase {
 
 3. Add new phases:
 
-* HAZARD
 * FISHING
 * MARKET
 
@@ -286,9 +285,10 @@ interface GameState {
 * TypeScript → 2–3h
 * Async/Await → 2h
 * Node + npm → 1h
-* Events → 1–2h
+* Events & Sockets → 2h
+* React & Prisma → 5-6h
 
-Total: ~6–8 hours
+Total: ~12–15 hours
 
 ---
 
@@ -309,8 +309,8 @@ Before starting, you should be able to:
 Do NOT overlearn:
 
 * Advanced TypeScript
-* Frameworks (React, etc.)
-* Complex patterns
+* Complex design patterns
+* Things not required by the 17-point scope
 
 👉 Learn just enough to start building.
 
@@ -321,3 +321,83 @@ Do NOT overlearn:
 > If you don’t understand something, build a small example and test it.
 
 Learning happens through execution, not theory.
+
+---
+
+EXTRA:
+
+---
+
+### # 8. 🌐 REST APIs with Express.js 
+*You know how HTTP works from `webserv`. Express just makes it 100x easier.*
+**Learn:**
+*   Initializing an Express app.
+*   Handling `app.get()` and `app.post()`.
+*   Reading JSON from `req.body`.
+
+**Exercise:**
+1. Create a simple Express server:
+```ts
+import express from 'express';
+const app = express();
+app.use(express.json());
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  res.json({ message: "Login successful!", token: "12345" });
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+```
+2. Test it using `curl` or Postman.
+
+---
+
+### # 9. 🎨 Frontend UI with React / Next.js
+*How to build the visual interface that users interact with.*
+**Learn:**
+*   **Components**: Functions that return HTML (JSX).
+*   **Props**: Passing data from a parent component to a child component.
+*   **State (`useState`)**: Making the UI update when a variable changes.
+
+**Exercise:**
+1. Create a simple React Counter Component:
+```tsx
+import { useState } from 'react';
+
+export default function Counter() {
+  const [coins, setCoins] = useState(0);
+
+  return (
+    <div>
+      <h1>Player Coins: {coins}</h1>
+      <button onClick={() => setCoins(coins + 1)}>
+        Fish for Coins!
+      </button>
+    </div>
+  );
+}
+```
+2. Click the button and watch the screen update automatically (no DOM manipulation required!).
+
+---
+
+### # 10. 🗄️ Database ORM with Prisma
+*How to talk to PostgreSQL using TypeScript instead of raw SQL queries.*
+**Learn:**
+*   What an ORM (Object-Relational Mapper) is.
+*   How to write a `schema.prisma` file.
+
+**Exercise:**
+1. Look at this Prisma schema:
+```prisma
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  username String
+  password String
+}
+```
+2. Understand that Prisma will automatically generate a TypeScript function for you called `prisma.user.create({ data: { email, username, password } })`.
+
+---

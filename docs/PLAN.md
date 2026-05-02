@@ -1,318 +1,67 @@
-# 🗺️ Transcendence Project Plan  
-## Five Seas: Fisher Clash
+# 🗺️ 4-Week Sprint Plan — Transcendence (Fisher Clash MVP)
 
-This document defines the 4-week execution plan split per team member.
+This document outlines the official 4-week execution strategy. The project is divided into **5 Vertical Domains**, ensuring all 5 team members have equal, full-stack workloads without stepping on each other's toes.
 
-Goal:
-👉 Deliver a playable multiplayer game in 4 weeks (Quick Mode first), then extend if time allows.
+Goal: Deliver a 100% compliant, 17-point multiplayer game.
 
 ---
 
-# 🧠 Global Strategy
+## 👥 Team Domains (5 Vertical Slices)
+- **🟡 Tania (Tech Lead & Dev):** DevOps, Infrastructure & Real-Time Networking.
+- **🔵 Samir (Feature Lead):** Database, REST APIs, & Authentication Full-Stack.
+- **🟠 Gabriel (PO & Dev):** Core Game Engine & Map UI.
+- **🟢 Keillin (PM & Dev):** Combat Logic, Fishing Economy, & Game Mechanics.
+- **🔴 Ana Paula (Feature Lead):** Profiles, Social Features & Chat Full-Stack.
 
-- Week 1 → Foundation (game runs, even if minimal)
-- Week 2 → Full gameplay loop (end-to-end match playable)
-- Week 3 → Features + balancing (game becomes fun)
-- Week 4 → Polish + stabilization + demo prep
-
----
-
-# 👥 Team Roles Summary
-
-- 🧠 Samir → Core Engine & Game Rules  
-- 🌐 Tania → Networking + Database + Sessions  
-- 🎮 Gabriel → Movement + Map + Player UI  
-- 💰 Keillin → Fishing + Economy + UI  
-- 🤖 Ana Paula → Bots + Hazards + Integration + QA  
+*(Note: AI Bots, Action Cards, and Hazards have been removed to ensure the MVP is completed safely within 4 weeks).*
 
 ---
 
-# 🟢 WEEK 1 — FOUNDATION (Make it run)
+## 🟢 WEEK 1 — FOUNDATION & SECURITY
+*Goal: Secure the mandatory infrastructure and game engine base.*
 
-## 🎯 Goal:
-A multiplayer session can start and players can move in a basic loop.
-
----
-
-## 🧠 Samir — Core Engine
-- Define GameState structure
-- Implement turn system skeleton
-- Implement phase system (empty logic)
-- Define all data contracts (players, seas, events)
-- Create rule interface (movement/fishing placeholders)
+- **Tania**: Setup `docker-compose.yml`, HTTPS/TLS certs, and initialize WebSocket server (rejecting unauthenticated users).
+- **Samir**: Setup PostgreSQL. Create Users DB Schema. Build Auth REST APIs (bcrypt, JWT) and Mandatory Legal Pages (Privacy, ToS).
+- **Gabriel**: Define TypeScript `GameState` models, enums (Phases, Seas). Build the 5-sea Map React UI with mock data.
+- **Ana**: Create Friends/Match History DB Schemas. Build the User Profile API and the React Profile UI (visuals).
+- **Keillin**: Define the Fishing Loot Tables (Seasons) and Cargo logic in the Game Engine. Build the React Inventory UI.
 
 ---
 
-## 🌐 Tania — Networking + Database
-- Setup WebSocket server
-- Create lobby system (join/leave/start game)
-- Create room/session handling
-- Define event system structure
-- Setup database (initial schema)
-  - players
-  - sessions
-  - game state snapshot (basic)
-- Implement minimal persistence layer
+## 🟡 WEEK 2 — SOCIAL & LOBBY
+*Goal: Players can log in, chat, and join a room together.*
+
+- **Tania**: Build Lobby backend (Create/Join/Leave Rooms) and Global Chat WebSocket broadcasting.
+- **Samir**: Build React Login/Registration UI and setup protected frontend routes.
+- **Gabriel**: Implement server-side turn loop and validation. Connect the Map UI clicks to move the player.
+- **Ana**: Build the Friends List UI and the Chat UI (connecting to Tania's WebSocket).
+- **Keillin**: Build the "Game Customization" Lobby UI (Host selects Map Theme and Game Length).
 
 ---
 
-## 🎮 Gabriel — Movement + Map
-- Create basic map UI (5 seas)
-- Render players on map
-- Implement movement UI (send intent only)
-- Connect to server events (movement placeholder)
+## 🟠 WEEK 3 — FISHER CLASH MECHANICS
+*Goal: The game is fully playable with combat and economy.*
+
+- **Tania**: Build Remote Player resilience (save state on disconnect, pause game, allow graceful reconnect).
+- **Samir**: Refine Auth/Security edge cases. Assist Tania with Lobby bugs.
+- **Gabriel**: Refine Movement logic. Ensure the state machine handles simultaneous connections smoothly.
+- **Ana**: Finalize Profile Stats fetching. Add "Online/Offline" status to Friends List.
+- **Keillin**: Implement the Pirate Combat logic (dice rolls) and the Market Economy. Implement the "End Game" win screen when the 8-round limit is hit.
 
 ---
 
-## 💰 Keillin — Fishing + Economy
-- Define fish types + rarity structure
-- Create inventory data model
-- Create UI placeholders (inventory/market)
-- No real logic yet (structure only)
+## 🔴 WEEK 4 — SPECTATOR & POLISH (THE 17 POINTS)
+*Goal: Finalize the minor modules and prepare for evaluation.*
+
+- **Tania**: Build Spectator Mode backend (allow 5th connection to join room as viewer).
+- **Samir**: Final Docker test. Verify database doesn't crash during simultaneous requests (Multi-user safety).
+- **Gabriel**: Final bug-hunting. Ensure illegal moves are rejected server-side without crashing.
+- **Ana**: Build Spectator Mode UI (hide move/fish/attack buttons for viewers).
+- **Keillin**: Add the "Juice" (Sound effects for fishing/attacking, CSS animations for floating coins).
 
 ---
 
-## 🤖 Ana Paula — Bots + Hazards + QA
-- Setup logging system (turn/event logs)
-- Create bot simulation (random actions placeholder)
-- Setup QA testing environment (manual match testing flow)
-- Define hazard system structure (no logic yet)
-
----
-
-## 🧪 Week 1 Milestone:
-👉 Players can join lobby and move in a shared session (even if fake logic)
-
----
-
-# 🟡 WEEK 2 — CORE GAME LOOP
-
-## 🎯 Goal:
-Full playable match loop exists end-to-end.
-
----
-
-## 🧠 Samir — Core Engine
-- Implement full turn cycle
-- Implement movement validation rules
-- Implement fishing resolution logic
-- Implement hazard hooks (called but simple)
-- Integrate with server events
-
----
-
-## 🌐 Tania — Networking + Database
-- Full event system implementation (WebSocket)
-- Turn synchronization system
-- Save/load game state in database
-- Reconnection system (basic state restore)
-- Session persistence improvements
-
----
-
-## 🎮 Gabriel — Movement + Map
-- Full movement system integration
-- Sea occupancy logic (Quick Mode)
-- Visual feedback for movement and position updates
-
----
-
-## 💰 Keillin — Fishing + Economy
-- Implement fishing logic per sea
-- Implement selling system
-- Coins system
-- Basic market interaction
-
----
-
-## 🤖 Ana Paula — Bots + Hazards + QA
-- Implement bot AI v1 (basic decision-making)
-- Implement hazard system (basic damage/events)
-- Run full match simulations with bots
-- Identify sync and logic issues
-
----
-
-## 🧪 Week 2 Milestone:
-👉 A full match can be played end-to-end with bots filling missing players
-
----
-
-# 🟠 WEEK 3 — FEATURES + BALANCING
-
-## 🎯 Goal:
-Game becomes interesting, balanced, and visually clear.
-
----
-
-## 🧠 Samir — Core Engine
-- Balance risk/reward system
-- Improve turn resolution clarity
-- Add hooks for future features (cards if needed)
-- Optimize game state handling
-
----
-
-## 🌐 Tania — Networking + Database
-- Optimize WebSocket performance
-- Improve reconnection stability
-- Database optimization (snapshots/history)
-- Reduce desync issues
-
----
-
-## 🎮 Gabriel — Movement + Map
-- Improve UI clarity (animations, highlights)
-- Add sea danger visualization
-- Improve player feedback
-
----
-
-## 💰 Keillin — Fishing + Economy
-- Add set collection system
-- Balance fish rarity and rewards
-- Improve market UI/UX
-- Add bonus calculations
-
----
-
-## 🤖 Ana Paula — Bots + Hazards + QA
-- Improve bot AI (smarter decisions)
-- Expand hazard variety (storms, monsters, etc.)
-- Continuous full-match testing
-- Cross-system bug fixing
-
----
-
-## 🧪 Week 3 Milestone:
-👉 Game is fun, stable, and strategically meaningful
-
----
-
-# 🔴 WEEK 4 — POLISH + DEMO PREP
-
-## 🎯 Goal:
-Stable, clean, demo-ready game.
-
----
-
-## 🧠 Samir — Core Engine
-- Final bug fixes
-- Lock game rules (no major changes)
-- Ensure deterministic behavior
-
----
-
-## 🌐 Tania — Networking + Database
-- Final server stability improvements
-- Fix sync edge cases
-- Ensure DB consistency for demo
-- Prevent session crashes
-
----
-
-## 🎮 Gabriel — Movement + Map
-- UI polish
-- Fix rendering issues
-- Improve responsiveness
-
----
-
-## 💰 Keillin — Fishing + Economy
-- UI polish
-- Final balance tweaks
-- Improve feedback clarity
-
----
-
-## 🤖 Ana Paula — Bots + Hazards + QA
-- Full system QA (daily full matches required)
-- Crash prevention testing
-- Demo rehearsal simulation
-- Final integration validation
-
----
-
-## 🧪 Week 4 Milestone:
-👉 Fully playable, stable multiplayer demo with bots ensuring full matches always work
-
----
-
-# 🧭 Final Rules
-
-## 🚨 MVP Priority Rule:
-If a feature is not required for a full match → cut it.
-
----
-
-## ⚖️ Stability Rule:
-Week 4 is strictly for polish and bug fixing.
-
----
-
-## 🤝 Integration Rule:
-Bots must use the same system as real players.
-
----
-
-# 🏁 Final Outcome
-
-- Week 1 → system exists  
-- Week 2 → game is fully playable  
-- Week 3 → game is fun and balanced  
-- Week 4 → game is demo-ready and stable  
-
----
-
-
-**Honest recommendation for a 4-week sprint:**
-
-## **Best Tech Stack**
-
-### **Backend + Core Engine: Node.js + TypeScript**
-- **Fastest development** for your timeline
-- WebSocket support is native and performant (use `socket.io` or `ws`)
-- Great npm ecosystem (libraries for everything)
-- Same language as frontend = easier team coordination
-- Good enough for game logic (not performance-critical on server side)
-
-### **Frontend: React + TypeScript**
-- Rapid UI development
-- Easy animations and real-time updates
-- Good component reusability for inventory/market UIs
-- Large community if you hit issues
-
-### **Database: PostgreSQL + Prisma ORM**
-- Simple to setup and query
-- Type-safe with TypeScript
-- Good for session/game state persistence
-
-### **Bots/AI: Python (separate service) OR Node.js**
-- If bots are simple (random + basic heuristics): integrate into Node.js
-- If they need ML: Python with `scikit-learn` or similar
-
----
-
-## **Why this over C++:**
-
-1. **Speed matters** — 4 weeks is tight. Node.js has less boilerplate than C++
-2. **Easier debugging** — Web dev tools > C++ debugging for UI issues
-3. **Team fluidity** — One language stack (JavaScript/TypeScript) = easier collaboration
-4. **Deployability** — Node.js deploys faster, easier to host
-5. **Iteration** — Game balance tweaks ship faster
-
----
-
-## **Alternative (if you want game-engine feel):**
-
-**Godot Engine** (GDScript backend + frontend in same tool)
-- Single engine for server + client logic
-- Much faster UI development than C++
-- Good for prototyping
-- Smaller learning curve if anyone knows Unreal/Unity
-
----
-
-**Bottom line**: **Node.js + React + PostgreSQL** gives you the best velocity. Save C++ for when you have 3+ months and performance is actually a bottleneck.
-
----
+## 🧭 Sprint Rules
+1. Never build a feature that is not on the `MODULE_CHECKLIST.md`.
+2. Do not start Week 3 until the Week 1 Foundation is 100% merged.
+3. If a task takes more than 2 days, ask the team for help immediately.

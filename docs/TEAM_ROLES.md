@@ -1,257 +1,108 @@
-# 👥 Team Structure — Transcendence Project (Five Seas: Fisher Clash)
+# 👥 Team Roles — Transcendence Project (Fisher Clash MVP)
 
-This document defines the responsibilities of each team member to ensure parallel development, clear ownership, and smooth integration.
-
-The architecture is designed around:
-- A shared **Core Game Engine**
-- A centralized **Networking + Database layer**
-- Feature-based full-stack ownership
-- Early integration with **bot players for testing**
+The project is divided into **5 Vertical Domains**. Every team member works Full-Stack within their domain to prevent bottlenecks and ensure everyone learns React, Node.js, and Database interaction.
 
 ---
 
-# 🧠 1. Core Engine & Tech Lead (Samir)
+## 🟡 Tania (Tech Lead) — DevOps & Networking
 
-## Ownership
-- Game state model (single source of truth)
-- Turn system & phase resolution
-- Core game rules (movement, fishing, economy rules, hazards logic if needed)
-- Deterministic game logic (no side effects, no I/O)
+**Ownership**
+- Infrastructure, Deployment, and Security protocols.
+- Real-Time WebSocket communication.
 
-## Responsibilities
-- Define and maintain all game data contracts:
-  - Player state structure
-  - Game state structure
-  - Event types and payloads
-- Ensure consistency of game rules across all systems
-- Review all rule-related pull requests
+**Responsibilities**
+- Containerize the application using Docker.
+- Setup and enforce HTTPS/TLS connections locally.
+- Build the `Socket.io` gateway and handle the connection lifecycle (connect/disconnect/reconnect).
+- Ensure WebSockets explicitly reject unauthenticated connections.
 
-## Constraints
-- ❌ Does NOT build UI
-- ❌ Does NOT manage database or networking
-
-## Deliverables
-- Core game engine (pure logic layer)
-- Turn loop implementation
-- Rule resolution system
+**Deliverables**
+- `docker-compose.yml`
+- Global Chat backend broadcasting system.
+- Lobby Room management (Create/Join rooms).
+- Remote Player resilience (state recovery on disconnect).
+- Spectator Mode backend logic.
 
 ---
 
-# 🌐 2. Networking, Database & Game Session Lead (Tania)
+## 🔵 Samir (Feature Lead) — Security & Database
 
-## Ownership
-- WebSocket server (real-time communication)
-- Lobby system (create / join / start game)
-- Game session lifecycle (start → end)
-- Event system (server-authoritative architecture)
-- Database (single source of truth for persistence)
+**Ownership**
+- PostgreSQL configuration and the central Authentication REST APIs.
 
----
+**Responsibilities**
+- Configure Prisma/TypeORM and set up the primary `Users` table.
+- Implement the JWT token generation and bcrypt password hashing.
+- Build the React Login/Registration screens.
+- Build the mandatory legal compliance pages.
 
-## Database Responsibility (CRITICAL)
-Tania is the **only owner of database schema and persistence logic**.
-
-The database stores:
-- Players
-- Game sessions
-- Match history
-- Reconnection state
-
-Other team members may request data needs but do not define schema.
+**Deliverables**
+- PostgreSQL database instance.
+- Authentication REST API endpoints.
+- Login and Registration UI.
+- Privacy Policy and Terms of Service UI.
 
 ---
 
-## Responsibilities
-- Implement WebSocket server and event routing
-- Manage game sessions and rooms
-- Ensure server-authoritative gameplay
-- Handle player reconnection and state recovery
-- Implement persistence layer (DB or lightweight storage)
+## 🟠 Gabriel (PO & Dev) — Core Game Engine & Map UI
 
-## Deliverables
-- WebSocket infrastructure
-- Lobby and session system
-- Event system (`turn:begin`, `player:move`, etc.)
-- Database schema and persistence layer
-- Reconnection system
+**Ownership**
+- The foundational server-side rules of the game and the visual game board.
 
----
+**Responsibilities**
+- Architect the TypeScript `GameState` models and share them between frontend and backend.
+- Build the server-side turn loop and movement validation.
+- Ensure illegal moves are rejected server-side without crashing.
+- Build the React Map UI that visualizes the 5 Seas.
 
-# 🎮 3. Movement, Map & Player State Lead (Gabriel)
-
-## Ownership
-- Movement system (validated through Core Engine)
-- Sea occupancy logic (quick and full mode support)
-- Player positioning system
-
-## Frontend Responsibilities
-- Map UI (5 seas visualization)
-- Player position rendering
-- Movement controls and interactions
-
-## Backend Responsibilities
-- Movement request handling (via server events)
-- State updates via Core Engine + Networking layer
-
-## Constraints
-- ❌ Does NOT define database schema
-- ✔ Requests required data fields from Networking Lead
-
-## Deliverables
-- Movement system implementation
-- Map UI
-- Player state integration
+**Deliverables**
+- Monorepo shared `packages/game-engine` data structures.
+- Turn counter and Phase state machine.
+- 5-Sea Map UI with interactive click-to-move.
+- Real-time rendering of player positions on the map.
 
 ---
 
-# 💰 4. Fishing, Economy & UI Lead (Keillin)
+## 🟢 Keillin (PM & Dev) — Game Mechanics & Economy
 
-## Ownership
-- Fishing system (core logic via Core Engine)
-- Economy system (coins, selling, sets)
-- Inventory system (fish storage)
+**Ownership**
+- The math, rules, and economy of Fisher Clash, plus UI polish.
 
-## Frontend Responsibilities
-- Inventory UI
-- Market UI
-- Fishing results display
-- Transaction feedback UI
+**Responsibilities**
+- Write the Fishing RNG logic and Loot Table configurations.
+- Implement Pirate Combat dice rolls and the Lagoon "Safe Zone" rules.
+- Write the logic that enforces the 3-fish cargo limit.
+- Manage the GitHub project board and ensure tasks are tracking well.
 
-## Backend Responsibilities
-- Fishing result processing
-- Economy calculations (selling, bonuses, sets)
-
-## Constraints
-- ❌ Does NOT define database schema
-- ✔ Requests required persistence needs from Networking Lead
-
-## Deliverables
-- Fishing system
-- Economy system
-- Inventory + market UI
-- Integration with game events
+**Deliverables**
+- Fishing API and Combat API logic inside the Game Engine.
+- Game Customization Lobby UI (Length / Map Theme selection).
+- Player Inventory React UI.
+- "End Game" win screen when the round limit hits.
+- Game Juice (Sound effects, CSS floating coin animations).
 
 ---
 
-# 🤖 5. Bots, Hazards & Integration Lead (Ana Paula)
+## 🔴 Ana Paula (Feature Lead) — Social & Profiles
 
-## Ownership
-- Bot AI system (simulated players)
-- Hazard system (storms, damage events, environmental effects)
-- Game balancing support (risk tuning and gameplay feel)
+**Ownership**
+- The entire social experience of the platform.
 
-## Frontend Responsibilities
-- Turn/event logs
-- Damage and hazard feedback UI
-- Bot indicators (optional visualization)
+**Responsibilities**
+- Design the Database schemas for `Friends` and `Match History`.
+- Build the REST APIs to fetch player stats and match records.
+- Build the React components for the Chat and Friends list.
+- Track "Online/Offline" status using WebSockets.
 
----
-
-## Integration & QA Responsibility (CRITICAL)
-Ana Paula is responsible for:
-- Running full game simulations daily
-- Testing full matches (6–8 players with bots)
-- Validating system integration across all modules
-- Ensuring stability of full gameplay loop
-
-## Deliverables
-- Bot AI system
-- Hazard system
-- Integration testing suite
-- Game balancing support tools
-- UI feedback for events and damage
+**Deliverables**
+- User Profile Page UI (Avatar, Stats, History).
+- Global Chat Window UI.
+- Friends List UI (Add/Remove friends).
+- Spectator Mode UI (View-only Map).
 
 ---
 
-# 🔥 Global Architecture Rules
-
-## 🧠 Core Engine is authoritative
-All game rules must be resolved by the Core Engine.
-
----
-
-## 🌐 Server is the source of truth
-All actions are validated and processed server-side.
-
-Clients only send **intent**, never results.
-
----
-
-## 🗄️ Database ownership is centralized
-Only Networking Lead (Tania) defines and manages:
-- Schema
-- Persistence
-- Storage logic
-
----
-
-## 🤝 Feature-based full-stack ownership
-Each team member owns a feature end-to-end (backend + frontend + integration).
-
----
-
-## 🧪 Bots simulate real players
-Bots must use the same API and event system as human players.
-
----
-
-# 🚀 Design Goal
-
-This structure is designed to:
-- Enable parallel development from day 1
-- Avoid frontend/backend bottlenecks
-- Ensure early multiplayer testing
-- Guarantee a playable demo through bot integration
-- Minimize integration risk before evaluation
-
----
-
-**Honest recommendation for a 4-week sprint:**
-
-## **Best Tech Stack**
-
-### **Backend + Core Engine: Node.js + TypeScript**
-- **Fastest development** for your timeline
-- WebSocket support is native and performant (use `socket.io` or `ws`)
-- Great npm ecosystem (libraries for everything)
-- Same language as frontend = easier team coordination
-- Good enough for game logic (not performance-critical on server side)
-
-### **Frontend: React + TypeScript**
-- Rapid UI development
-- Easy animations and real-time updates
-- Good component reusability for inventory/market UIs
-- Large community if you hit issues
-
-### **Database: PostgreSQL + Prisma ORM**
-- Simple to setup and query
-- Type-safe with TypeScript
-- Good for session/game state persistence
-
-### **Bots/AI: Python (separate service) OR Node.js**
-- If bots are simple (random + basic heuristics): integrate into Node.js
-- If they need ML: Python with `scikit-learn` or similar
-
----
-
-## **Why this over C++:**
-
-1. **Speed matters** — 4 weeks is tight. Node.js has less boilerplate than C++
-2. **Easier debugging** — Web dev tools > C++ debugging for UI issues
-3. **Team fluidity** — One language stack (JavaScript/TypeScript) = easier collaboration
-4. **Deployability** — Node.js deploys faster, easier to host
-5. **Iteration** — Game balance tweaks ship faster
-
----
-
-## **Alternative (if you want game-engine feel):**
-
-**Godot Engine** (GDScript backend + frontend in same tool)
-- Single engine for server + client logic
-- Much faster UI development than C++
-- Good for prototyping
-- Smaller learning curve if anyone knows Unreal/Unity
-
----
-
-**Bottom line**: **Node.js + React + PostgreSQL** gives you the best velocity. Save C++ for when you have 3+ months and performance is actually a bottleneck.
+# 🔄 Integration & QA Rules
+1. **The Golden Rule**: Never wait for someone else's backend. Use "Mock Data" (fake hardcoded variables) to build your React UI until their API is ready.
+2. **Merge Conflict Avoidance**: Because everyone owns a separate Vertical Domain, you will rarely touch the same files.
+3. **The 48-Hour PM Rule**: If a developer is stuck on a critical task for more than 48 hours, Keillin (PM) must immediately re-assign someone (like Gabriel) to pair-program and unblock them.
